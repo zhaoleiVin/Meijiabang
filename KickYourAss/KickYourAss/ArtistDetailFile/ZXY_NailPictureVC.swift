@@ -521,7 +521,17 @@ extension ZXY_NailPictureVC : UITableViewDelegate , UITableViewDataSource ,ZXY_P
         }
         else
         {
-            return 49
+            var currentInfo = dataForTable!.data?.dataDescription?
+            var height      = 49
+            if(currentInfo == nil)
+            {
+                return 49
+            }
+            else
+            {
+                var textHeight = self.getCellHeightWith(textString: currentInfo, minHeight: 21, fontSize: UIFont.systemFontOfSize(15), constraintWidth: tableView.frame.size.width - 36)
+                return textHeight + 28
+            }
         }
     }
     

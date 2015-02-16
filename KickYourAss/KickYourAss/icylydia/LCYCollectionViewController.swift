@@ -155,6 +155,15 @@ class LCYCollectionViewController: UICollectionViewController {
     
         return cell
     }
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
+    {
+        let data = infoData[indexPath.row].data
+        var story = UIStoryboard(name: "ArtistDetailStoryBoard", bundle: nil)
+        var vc    = story.instantiateViewControllerWithIdentifier("nailPictureID") as ZXY_NailPictureVC
+        vc.setAlbumID(data.albumId, user_id: "")
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 
     // MARK: UICollectionViewDelegate
 

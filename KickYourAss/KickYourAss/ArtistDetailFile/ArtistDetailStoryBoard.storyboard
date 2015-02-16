@@ -412,11 +412,8 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gF4-Ch-1c3" id="60N-qi-g8i">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lO7-9J-Fzq">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lO7-9J-Fzq">
                                                     <rect key="frame" x="18" y="14" width="38" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="jg4-tS-4jW"/>
-                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.49803921569999998" green="0.49803921569999998" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -426,6 +423,7 @@
                                                 <constraint firstItem="lO7-9J-Fzq" firstAttribute="top" secondItem="60N-qi-g8i" secondAttribute="top" constant="14" id="Atx-dC-uba"/>
                                                 <constraint firstAttribute="bottom" secondItem="lO7-9J-Fzq" secondAttribute="bottom" constant="14" id="QrP-Vm-pna"/>
                                                 <constraint firstItem="lO7-9J-Fzq" firstAttribute="leading" secondItem="60N-qi-g8i" secondAttribute="leading" constant="18" id="u20-lh-sQ6"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="lO7-9J-Fzq" secondAttribute="trailing" id="z2o-Vl-5oT"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -1055,7 +1053,7 @@
         <!--Date Change InfoVC-->
         <scene sceneID="ouc-IO-C3b">
             <objects>
-                <viewController id="r4V-tI-DYF" customClass="ZXY_DateChangeInfoVC" customModule="KickYourAss" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="changeInfoID" storyboardIdentifier="changeInfoID" id="r4V-tI-DYF" customClass="ZXY_DateChangeInfoVC" customModule="KickYourAss" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jZa-Ik-jvN"/>
                         <viewControllerLayoutGuide type="bottom" id="ADj-G0-iNJ"/>
@@ -1110,28 +1108,28 @@
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6K9-mO-uRK">
                                                             <rect key="frame" x="37" y="21" width="39" height="47"/>
-                                                            <state key="normal" image="littleBoy">
+                                                            <state key="normal" image="littleBoy_blue">
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
                                                             <connections>
                                                                 <action selector="selectBoy:" destination="wfA-aM-eyi" eventType="touchUpInside" id="a2n-Iv-l3W"/>
                                                             </connections>
                                                         </button>
+                                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="rightSimpleRed" translatesAutoresizingMaskIntoConstraints="NO" id="UyA-HV-VdZ">
+                                                            <rect key="frame" x="37" y="68" width="30" height="30"/>
+                                                        </imageView>
+                                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="rightSimpleRed" translatesAutoresizingMaskIntoConstraints="NO" id="wzO-Em-okX">
+                                                            <rect key="frame" x="130" y="68" width="30" height="30"/>
+                                                        </imageView>
                                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yVY-jy-UCh">
                                                             <rect key="frame" x="126" y="18" width="39" height="53"/>
-                                                            <state key="normal" image="littleGirl">
+                                                            <state key="normal" image="littleGirl_gray">
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
                                                             <connections>
                                                                 <action selector="selectGirl:" destination="wfA-aM-eyi" eventType="touchUpInside" id="pSn-dd-A1y"/>
                                                             </connections>
                                                         </button>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="rightSimpleRed" translatesAutoresizingMaskIntoConstraints="NO" id="UyA-HV-VdZ">
-                                                            <rect key="frame" x="37" y="68" width="30" height="30"/>
-                                                        </imageView>
-                                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="rightSimpleRed" translatesAutoresizingMaskIntoConstraints="NO" id="wzO-Em-okX">
-                                                            <rect key="frame" x="130" y="68" width="30" height="30"/>
-                                                        </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -1146,7 +1144,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="boyBtn" destination="6K9-mO-uRK" id="uct-70-rnl"/>
                                             <outlet property="boyFlag" destination="UyA-HV-VdZ" id="pwW-Zl-615"/>
+                                            <outlet property="girlBtn" destination="yVY-jy-UCh" id="cdA-6z-D3Y"/>
                                             <outlet property="girlFlag" destination="wzO-Em-okX" id="xxv-6E-fak"/>
                                         </connections>
                                     </tableViewCell>
@@ -1160,9 +1160,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="mfY-Gz-FG1" firstAttribute="leading" secondItem="pR1-gg-p66" secondAttribute="leading" id="XZm-tQ-PQD"/>
-                            <constraint firstItem="mfY-Gz-FG1" firstAttribute="top" secondItem="jZa-Ik-jvN" secondAttribute="bottom" id="dv5-XF-uVO"/>
                             <constraint firstAttribute="trailing" secondItem="mfY-Gz-FG1" secondAttribute="trailing" id="hKi-cO-tsF"/>
                             <constraint firstAttribute="bottom" secondItem="mfY-Gz-FG1" secondAttribute="bottom" id="qRN-Kc-NQF"/>
+                            <constraint firstItem="mfY-Gz-FG1" firstAttribute="top" secondItem="pR1-gg-p66" secondAttribute="topMargin" id="tZd-1T-J5v"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1398,8 +1398,8 @@
         <image name="artistSay_down" width="50" height="50"/>
         <image name="artistSay_up" width="50" height="50"/>
         <image name="heart_gray" width="20" height="18"/>
-        <image name="littleBoy" width="39" height="47"/>
-        <image name="littleGirl" width="39" height="53"/>
+        <image name="littleBoy_blue" width="37" height="44"/>
+        <image name="littleGirl_gray" width="31" height="44"/>
         <image name="nailartistWhite_up" width="13" height="25"/>
         <image name="nailartist_down" width="14" height="25"/>
         <image name="noNet" width="50" height="50"/>

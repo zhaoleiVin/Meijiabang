@@ -19,10 +19,13 @@ class ZXY_DateChangeInfoVC: UIViewController {
 
     @IBOutlet weak var currentTable: UITableView!
     private var infoText : UITextField?
+    private var initTitle : String!
+    private var initValue : AnyObject?
+    
     
     weak var delegate : ZXY_DateChangeInfoVCDelegate?
     
-    var currentDic : Dictionary<String , AnyObject>!
+    var currentDic : Dictionary<String , AnyObject?>?
     
     var isInput    : Bool = true
     
@@ -30,14 +33,32 @@ class ZXY_DateChangeInfoVC: UIViewController {
     
     var sexString  = "男"
     
-    func setCurrentTypeDic(valueDic : Dictionary<String , AnyObject>)
+    var isInputNum = false
+    
+    /**
+    用来修改预约的页面
+    
+    :param: valueDic 包含title warn tag
+    */
+    func setCurrentTypeDic(valueDic : Dictionary<String , AnyObject?>)
     {
         currentDic = valueDic
-        var flag   = currentDic["tag"] as Int
-        if(flag == 1)
-        {
-            isInput = false
-        }
+    }
+    
+    func setIsInput(isInput : Bool)
+    {
+        self.isInput = isInput
+    }
+    
+    func setIsInputNum(isInputNum : Bool)
+    {
+        self.isInputNum = isInputNum
+    }
+    
+    func setInitValueAndTitle(initKey : String , initValue : AnyObject?)
+    {
+       self.initTitle = initKey
+       self.initValue = initValue
     }
     
     override func viewDidLoad() {
@@ -56,20 +77,37 @@ class ZXY_DateChangeInfoVC: UIViewController {
     
 
     override func rightNaviButtonAction() {
-        var keyString   = currentDic["title"] as String
-        if(self.delegate != nil)
+        var keyString : String?  = currentDic?["title"]? as? String
+        if(keyString != nil)
         {
-            if(isInput)
+            if(self.delegate != nil)
             {
-                self.delegate!.afterChange(keyString, andValue: infoText!.text)
+                if(isInput)
+                {
+                    self.delegate!.afterChange(keyString!, andValue: infoText!.text)
+                }
+                else
+                {
+                    self.delegate!.afterChange(keyString!, andValue:sexString)
+                    self.delegate!.changeSex!(sexFlag)
+                }
+            }
+            self.navigationController?.popViewControllerAnimated(true)
+        }
+        else
+        {
+            
+            if(!isInput)
+            {
+                self.delegate!.afterChange(self.initTitle, andValue: "\(sexFlag)")
+                self.delegate!.changeSex?(sexFlag)
             }
             else
             {
-                self.delegate!.afterChange(keyString, andValue:sexString)
-                self.delegate!.changeSex!(sexFlag)
+                self.delegate!.afterChange(self.initTitle, andValue: infoText!.text)
             }
+            self.navigationController?.popViewControllerAnimated(true)
         }
-        self.navigationController?.popViewControllerAnimated(true)
     }
     
     /*
@@ -91,8 +129,8 @@ extension ZXY_DateChangeInfoVC : UITableViewDelegate ,UITableViewDataSource
         {
             var cell = tableView.dequeueReusableCellWithIdentifier(ZXY_ChangeDateInfoCellID) as ZXY_ChangeDateInfoCell
             self.infoText = cell.infoText
-            var flag   = currentDic["tag"] as Int
-            if(flag == 4)
+            
+            if(isInputNum)
             {
                 self.infoText?.keyboardType = UIKeyboardType.NumberPad
             }
@@ -104,13 +142,13 @@ extension ZXY_DateChangeInfoVC : UITableViewDelegate ,UITableViewDataSource
             var cell = tableView.dequeueReusableCellWithIdentifier(ZXY_ChangeUserSexCellID) as ZXY_ChangeUserSexCell
             cell.userSelectBoyOrGirlBlock = {[weak self](flag) -> Void in
                 self?.sexFlag = flag
-                if(flag == 1)
+                if(flag == 2)
                 {
-                    self?.sexString = "男"
+                    self?.sexString = "女"
                 }
                 else
                 {
-                    self?.sexString = "女"
+                    self?.sexString = "男"
                 }
                 return
             }

@@ -100,4 +100,14 @@ struct ZXY_ALLApi
     *  增加订单
     */
     static let ZXY_AddOrderAPI        = "Order/order_add"
+    
+    /**
+    *  修改用户头像
+    */
+    static let ZXY_ChangeProfileAPI   = "User/modifyHeadImage"
+    
+    /**
+    *  修改用户基本信息
+    */
+    static let ZXY_ChangeInfoAPI      = "User/modifyUserInfo"
 }

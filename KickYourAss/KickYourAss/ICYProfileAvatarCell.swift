@@ -27,7 +27,7 @@ class ICYProfileAvatarCell: UITableViewCell {
     }
 
     // 头像
-    @IBOutlet private weak var icyImageView: UIImageView!
+    @IBOutlet weak var icyImageView: UIImageView!
     var imagePath: String? {
         didSet {
             if let path = imagePath {

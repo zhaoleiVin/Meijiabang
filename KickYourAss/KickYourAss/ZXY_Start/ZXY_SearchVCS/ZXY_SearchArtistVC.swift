@@ -18,8 +18,7 @@ class ZXY_SearchArtistVC: UIViewController {
     
     private var userCityForFail = "大连市"
     private var allUserList : NSMutableArray? = NSMutableArray()
-    private var locationService : BMKLocationService = BMKLocationService()
-    private var cityNameSearch  : BMKGeoCodeSearch   = BMKGeoCodeSearch()
+    
     
     var isDownLoad = false
     var currentPage = 1
@@ -55,9 +54,7 @@ class ZXY_SearchArtistVC: UIViewController {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        locationService.delegate = nil
-        cityNameSearch.delegate  = nil
-        locationService.stopUserLocationService()
+        
     }
 
     
@@ -77,50 +74,47 @@ class ZXY_SearchArtistVC: UIViewController {
         var cityNameTemp = ZXY_UserInfoDetail.sharedInstance.getUserCityName()
         if(cityNameTemp == nil)
         {
-            locationService.delegate = self
-            cityNameSearch.delegate = self
-            locationService.startUserLocationService()
+            cityNameTemp = "大连市"
         }
-        else
+        var apiString    = ZXY_ALLApi.ZXY_MainAPI + ZXY_ALLApi.ZXY_SearchListAPI
+        var coor         = ZXY_LocationRelative.sharedInstance.sendLocationToEveryBody()?.coordinate
+        if(coor == nil)
         {
-
-        
-            var apiString    = ZXY_ALLApi.ZXY_MainAPI + ZXY_ALLApi.ZXY_SearchListAPI
-            var coor : Dictionary<String , String?>?     = ZXY_UserInfoDetail.sharedInstance.getUserCoordinate()
-            var lat : String!  = coor!["latitude"]!
-            var log : String!  = coor!["longitude"]!
-            var apiParameter : Dictionary<String , AnyObject> = ["user_id" : "",
-                "city"    : cityNameTemp!,
-                "lng"     : log,
-                "lat"     : lat,
-                "p"       : currentPage,
-                "nick_name" : searchText.text
-            ]
-            ZXY_NetHelperOperate.sharedInstance.startGetDataPost(apiString, parameter: apiParameter, successBlock: {[weak self] (returnDic) -> Void in
-                
-                if(self?.currentPage == 1)
-                {
-                    self?.allUserList?.removeAllObjects()
-                    self?.allUserList?.addObjectsFromArray(ZXYSearchBaseModel(dictionary: returnDic).data)
-                }
-                else
-                {
-                    self?.allUserList?.addObjectsFromArray(ZXYSearchBaseModel(dictionary: returnDic).data)
-                }
-                
+             return
+        }
+        var lat  = coor!.latitude
+        var log  = coor!.longitude
+        var apiParameter : Dictionary<String , AnyObject> = ["user_id" : "",
+            "city"    : cityNameTemp!,
+            "lng"     : log,
+            "lat"     : lat,
+            "p"       : currentPage,
+            "nick_name" : searchText.text
+        ]
+        ZXY_NetHelperOperate.sharedInstance.startGetDataPost(apiString, parameter: apiParameter, successBlock: {[weak self] (returnDic) -> Void in
+            
+            if(self?.currentPage == 1)
+            {
+                self?.allUserList?.removeAllObjects()
+                self?.allUserList?.addObjectsFromArray(ZXYSearchBaseModel(dictionary: returnDic).data)
+            }
+            else
+            {
+                self?.allUserList?.addObjectsFromArray(ZXYSearchBaseModel(dictionary: returnDic).data)
+            }
+            
+            self?.isDownLoad = false
+            self?.reloadCurrentTable()
+            }) {[weak self] (error) -> Void in
+                println(error)
                 self?.isDownLoad = false
                 self?.reloadCurrentTable()
-                }) {[weak self] (error) -> Void in
-                    println(error)
-                    self?.isDownLoad = false
-                    self?.reloadCurrentTable()
-                    
-            }
         }
 
     }
     
    
+
 }
 
 extension ZXY_SearchArtistVC : UITableViewDelegate , UITableViewDataSource , ZXY_SearchArtistCellDelegate
@@ -168,12 +162,17 @@ extension ZXY_SearchArtistVC : UITableViewDelegate , UITableViewDataSource , ZXY
             cell.userProfile.image = UIImage(named: "search_personCenter")
         }
         var artCoor  = self.xYStringToCoor(currentUser.longitude, latitude: currentUser.latitude)
-        var coor : Dictionary<String , String?>?     = ZXY_UserInfoDetail.sharedInstance.getUserCoordinate()
-        var lat  = coor!["latitude"]!
-        var log  = coor!["longitude"]!
-        var userCoor = self.xYStringToCoor(log, latitude: lat)
-        var distance = self.distanceCompareCoor(artCoor, userPosition: userCoor)
-        cell.distanceLbl.text = "\(Double(round(100 * distance)/100)) km"
+        var coor     = ZXY_LocationRelative.sharedInstance.sendLocationToEveryBody()?.coordinate
+        if(coor != nil)
+        {
+            var distance = self.distanceCompareCoor(artCoor, userPosition: coor!)
+            cell.distanceLbl.text = "\(Double(round(100 * distance)/100)) km"
+        }
+        else
+        {
+            cell.distanceLbl.text = "没有获取到位置信息"
+        }
+        
         cell.userProfileEdge.backgroundColor = self.colorWithIndexPath(indexPath)
         cell.conerLbl.backgroundColor        = self.colorWithIndexPath(indexPath)
         if(currentUser.role == "1")
@@ -207,7 +206,7 @@ extension ZXY_SearchArtistVC : UITableViewDelegate , UITableViewDataSource , ZXY
         }
         else
         {
-            return 181 - 94
+            return 181 - 85
         }
     }
     
@@ -275,35 +274,6 @@ extension ZXY_SearchArtistVC : UITableViewDelegate , UITableViewDataSource , ZXY
 
 }
 
-extension ZXY_SearchArtistVC : BMKLocationServiceDelegate , BMKGeoCodeSearchDelegate
-{
-    func didUpdateBMKUserLocation(userLocation: BMKUserLocation!) {
-        var lastLocation : CLLocation = userLocation.location
-        var optionO : BMKReverseGeoCodeOption = BMKReverseGeoCodeOption()
-        optionO.reverseGeoPoint = userLocation.location.coordinate
-        ZXY_UserInfoDetail.sharedInstance.setUserCoordinate("\(lastLocation.coordinate.latitude)", longitude: "\(lastLocation.coordinate.longitude)")
-        self.cityNameSearch.reverseGeoCode(optionO)
-        
-    }
-    
-    func onGetReverseGeoCodeResult(searcher: BMKGeoCodeSearch!, result: BMKReverseGeoCodeResult!, errorCode error: BMKSearchErrorCode) {
-        if(error.value == BMK_SEARCH_NO_ERROR.value)
-        {
-            ZXY_UserInfoDetail.sharedInstance.setUserCityName(result.addressDetail.city)
-            startGetArtistListData()
-            searcher.delegate = nil
-            locationService.stopUserLocationService()
-        }
-        else
-        {
-            ZXY_UserInfoDetail.sharedInstance.setUserCityName(userCityForFail)
-            startGetArtistListData()
-            searcher.delegate = nil
-            locationService.stopUserLocationService()
-        }
-    }
-
-}
 
 extension ZXY_SearchArtistVC
 {

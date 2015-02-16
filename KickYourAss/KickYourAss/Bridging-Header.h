@@ -25,6 +25,8 @@
 #import <UMengSocial/UMSocialSinaHandler.h>
 #import "ChatViewController.h"
 #import <UIKit/UIKit.h>
+#import "ChatListViewController.h"
+#import "ArtistList.h"
 // ⬇️ 超逸专区
 #import "UIImage+Resize.h"
 

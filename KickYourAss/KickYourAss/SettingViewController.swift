@@ -55,20 +55,22 @@ class SettingViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        return 2
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        switch section {
-        case 0:
-            return 2
-        case 1:
-            return userInfo.role == "1" ? 2 : 3
-        default:
-            return 0
-        }
+//        switch section {
+//        case 0:
+//            return 1
+//        case 1:
+////            return userInfo.role == "1" ? 1 : 2
+//            return 2
+//        default:
+//            return 0
+//        }
+        return 2
     }
 
 
@@ -77,16 +79,16 @@ class SettingViewController: UITableViewController {
 
         // Configure the cell...
         switch indexPath.section {
-        case 0:
+        case 1:
             switch indexPath.row {
+//            case 0:
+//                cell.textLabel?.text = "消息设置"
             case 0:
-                cell.textLabel?.text = "消息设置"
-            case 1:
                 cell.textLabel?.text = "修改密码"
             default:
                 break
             }
-        case 1:
+        case 0:
             switch indexPath.row {
             case 0:
                 cell.textLabel?.text = "关于我们"
@@ -106,16 +108,16 @@ class SettingViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch indexPath.section {
-        case 0:
+        case 1:
             switch indexPath.row {
-            case 0:
-                break
             case 1:
+                break
+            case 0:
                 performSegueWithIdentifier("modifyPassword", sender: nil)
             default:
                 break
             }
-        case 1:
+        case 0:
             switch indexPath.row {
             case 0:
                 performSegueWithIdentifier("showVersion", sender: nil)

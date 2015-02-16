@@ -159,9 +159,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
-    
-    if (_isScrollToBottom) {
+        [super viewWillAppear:animated];
+        if (_isScrollToBottom) {
         [self scrollViewToBottom:YES];
     }
     else{
@@ -169,8 +168,27 @@
     }
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if(self.shouleEx)
+    {
+        self.view.frame = CGRectMake(0, self.view.frame.origin.y, self.view.frame.size.width, self.view.bounds.size.height+45);
+    }
+
+
+}
+
+ - (void)viewDidLayoutSubviews
+{
+    
+}
+
+
+
 - (void)viewWillDisappear:(BOOL)animated
 {
+    
     [super viewWillDisappear:animated];
     
     // 设置当前conversation的所有message为已读
@@ -307,7 +325,7 @@
 {
     if (_chatToolBar == nil) {
         _chatToolBar = [[DXMessageToolBar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - [DXMessageToolBar defaultHeight], self.view.frame.size.width, [DXMessageToolBar defaultHeight])];
-        _chatToolBar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin;
+                _chatToolBar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin;
         _chatToolBar.delegate = self;
         
         ChatMoreType type = _isChatGroup == YES ? ChatMoreTypeGroupChat : ChatMoreTypeChat;

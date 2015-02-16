@@ -17,6 +17,8 @@
 @property (nonatomic) NSString *imgURLTo;
 @property (nonatomic) NSString *imgURLMy;
 
+@property (assign) Boolean shouleEx;
+
 - (instancetype)initWithChatter:(NSString *)chatter isGroup:(BOOL)isGroup;
 
 - (void)reloadData;

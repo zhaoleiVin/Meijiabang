@@ -37,8 +37,6 @@ enum ZXY_OrderStatus : Int
 class ZXY_NailArtistListVC: UIViewController {
 
     @IBOutlet weak var currentTable: UITableView!
-    private var locationService : BMKLocationService = BMKLocationService()
-    private var cityNameSearch  : BMKGeoCodeSearch   = BMKGeoCodeSearch()
     private var userListData : NSMutableArray = NSMutableArray()
     private var isDown = false
     private var userCityForFail = "大连市"
@@ -79,98 +77,72 @@ class ZXY_NailArtistListVC: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        locationService.delegate = nil
-        cityNameSearch.delegate = nil
-        locationService.stopUserLocationService()
-    }
+            }
 
     private func startGetArtistListData()
     {
-        var cityNameTemp = ZXY_UserInfoDetail.sharedInstance.getUserCityName()
+        var cityNameTemp : String? = ZXY_LocationRelative.sharedInstance.sendCityNameToEveryBody()?.addressDetail.city
         if(cityNameTemp == nil)
         {
-            locationService.delegate = self
-            cityNameSearch.delegate = self
-            locationService.startUserLocationService()
+            cityNameTemp = "大连市"
         }
-        else
+        if(isDown)
         {
-            if(isDown)
-            {
-                currentTable.footerEndRefreshing()
-                currentTable.headerEndRefreshing()
-                return
-            }
-            isDown = true
-            var urlString = ZXY_ALLApi.ZXY_MainAPI + ZXY_ALLApi.ZXY_UserListAPI
-            var coor : Dictionary<String , String?>?     = ZXY_UserInfoDetail.sharedInstance.getUserCoordinate()
-            var lat  = coor!["latitude"]!
-            var log  = coor!["longitude"]!
-            var parameter : Dictionary<String , String> = ["city" : cityNameTemp! ,
-                "user_id" : "" ,
-                "lng" : log! ,
-                "lat" : lat!   ,
-                "control" : "\(currentOrderStatus.rawValue)" ,
-                "p"       : "\(currentPage)"
-            ]
+            currentTable.footerEndRefreshing()
+            currentTable.headerEndRefreshing()
+            return
+        }
+        isDown = true
+        var urlString = ZXY_ALLApi.ZXY_MainAPI + ZXY_ALLApi.ZXY_UserListAPI
+        var coor      = ZXY_LocationRelative.sharedInstance.sendLocationToEveryBody()?.coordinate
+        if(coor == nil)
+        {
+            return
+        }
+        var lat  = coor!.latitude
+        var log  = coor!.longitude
+        var parameter : Dictionary<String , AnyObject> = ["city" : cityNameTemp! ,
+            "user_id" : "" ,
+            "lng" : log ,
+            "lat" : lat   ,
+            "control" : "\(currentOrderStatus.rawValue)" ,
+            "p"       : "\(currentPage)"
+        ]
+        
+        ZXY_NetHelperOperate().startGetDataPost(urlString, parameter: parameter, successBlock: {[weak self] (returnDic) -> Void in
             
-            ZXY_NetHelperOperate().startGetDataPost(urlString, parameter: parameter, successBlock: {[weak self] (returnDic) -> Void in
-                
-                if(self?.currentPage == 1)
-                {
-                    self?.userListData.removeAllObjects()
-                    self?.userListData.addObjectsFromArray(ZXYArtistListBase(dictionary: returnDic).data)
-                }
-                else
-                {
-                    self?.userListData.addObjectsFromArray(ZXYArtistListBase(dictionary: returnDic).data)
-                }
-                self?.reloadTableView()
+            if(self?.currentPage == 1)
+            {
+                self?.userListData.removeAllObjects()
+                self?.userListData.addObjectsFromArray(ZXYArtistListBase(dictionary: returnDic).data)
+            }
+            else
+            {
+                self?.userListData.addObjectsFromArray(ZXYArtistListBase(dictionary: returnDic).data)
+            }
+            
+            var artistList : [ZXYArtistListData] = self?.userListData as [ZXYArtistListData]
+            
+            artistList.map({[weak self] (currentArt) -> Void in
+                ZXY_DataProvider().saveArt(currentArt.nickName, artID: currentArt.userId, artImg: currentArt.headImage)
+                return
+            })
+            
+            self?.reloadTableView()
+            self?.currentTable.footerEndRefreshing()
+            self?.currentTable.headerEndRefreshing()
+            self?.isDown = false
+            }, failBlock: { [weak self](error) -> Void in
                 self?.currentTable.footerEndRefreshing()
                 self?.currentTable.headerEndRefreshing()
                 self?.isDown = false
-                }, failBlock: { [weak self](error) -> Void in
-                    self?.currentTable.footerEndRefreshing()
-                    self?.currentTable.headerEndRefreshing()
-                    self?.isDown = false
-                println(error)
-            })
-        }
-
+            println(error)
+        })
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-}
-
-extension ZXY_NailArtistListVC : BMKLocationServiceDelegate , BMKGeoCodeSearchDelegate
-{
-    func didUpdateBMKUserLocation(userLocation: BMKUserLocation!) {
-        var lastLocation : CLLocation = userLocation.location
-        var optionO : BMKReverseGeoCodeOption = BMKReverseGeoCodeOption()
-        optionO.reverseGeoPoint = userLocation.location.coordinate
-        ZXY_UserInfoDetail.sharedInstance.setUserCoordinate("\(lastLocation.coordinate.latitude)", longitude: "\(lastLocation.coordinate.longitude)")
-        self.cityNameSearch.reverseGeoCode(optionO)
-        
-    }
-    
-    func onGetReverseGeoCodeResult(searcher: BMKGeoCodeSearch!, result: BMKReverseGeoCodeResult!, errorCode error: BMKSearchErrorCode) {
-        if(error.value == BMK_SEARCH_NO_ERROR.value)
-        {
-            ZXY_UserInfoDetail.sharedInstance.setUserCityName(result.addressDetail.city)
-            startGetArtistListData()
-            searcher.delegate = nil
-            locationService.stopUserLocationService()
-        }
-        else
-        {
-            ZXY_UserInfoDetail.sharedInstance.setUserCityName(userCityForFail)
-            startGetArtistListData()
-            searcher.delegate = nil
-            locationService.stopUserLocationService()
-        }
     }
 }
 
@@ -195,13 +167,23 @@ extension ZXY_NailArtistListVC: UITableViewDelegate , UITableViewDataSource
         {
             headImg = currentArtist.headImage
         }
-        var coor : Dictionary<String , String?>?     = ZXY_UserInfoDetail.sharedInstance.getUserCoordinate()
-        var lat  = coor!["latitude"]!
-        var log  = coor!["longitude"]!
-        var currentUserL = self.xYStringToCoor(log, latitude: lat)
+        var coor = ZXY_LocationRelative.sharedInstance.sendLocationToEveryBody()?.coordinate
         var artistL      = self.xYStringToCoor(currentArtist.longitude, latitude: currentArtist.latitude)
-        var distance = self.distanceCompareCoor(artistL, userPosition: currentUserL)
-        cell.distanceLbl.text = "\(Double(round(100 * distance)/100)) km"
+        if(coor != nil)
+        {
+            var lat  = coor!.latitude
+            var log  = coor!.longitude
+            var distance = self.distanceCompareCoor(artistL, userPosition: coor)
+            cell.distanceLbl.text = "\(Double(round(100 * distance)/100)) km"
+
+        }
+        else
+        {
+            cell.distanceLbl.text = "没有获取到位置信息"
+        }
+        
+        
+        
         cell.setHeadImageURL(NSURL(string: headImg))
         cell.setRateValue((currentArtist.score as NSString).integerValue)
         return cell

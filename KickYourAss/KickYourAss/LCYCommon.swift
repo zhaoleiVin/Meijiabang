@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 宇周. All rights reserved.
 //
 
-class LCYCommon {
+@objc class LCYCommon {
     
     private lazy var userDefault = NSUserDefaults.standardUserDefaults()
     

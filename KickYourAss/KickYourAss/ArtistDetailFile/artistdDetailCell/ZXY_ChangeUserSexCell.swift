@@ -13,6 +13,8 @@ let ZXY_ChangeUserSexCellID = "ZXY_ChangeUserSexCellID"
 typealias ZXY_ChangeUserSexCellBlock = (flag: Int) -> Void
 class ZXY_ChangeUserSexCell: UITableViewCell {
 
+    @IBOutlet weak var girlBtn: UIButton!
+    @IBOutlet weak var boyBtn: UIButton!
     @IBOutlet weak var girlFlag: UIImageView!
     @IBOutlet weak var boyFlag: UIImageView!
     var userSelectBoyOrGirlBlock : ZXY_ChangeUserSexCellBlock!
@@ -29,14 +31,15 @@ class ZXY_ChangeUserSexCell: UITableViewCell {
 
     @IBAction func selectGirl(sender: AnyObject) {
         self.userSelectBoyOrGirlBlock(flag: 2)
-        girlFlag.hidden = false
-        boyFlag.hidden  = true
+        boyBtn.setImage(UIImage(named: "littleBoy_gray"), forState: UIControlState.Normal)
+        girlBtn.setImage(UIImage(named: "littleGirl_red"), forState: UIControlState.Normal)
+        
     }
     
     
     @IBAction func selectBoy(sender: AnyObject) {
         self.userSelectBoyOrGirlBlock(flag: 1)
-        girlFlag.hidden = true
-        boyFlag.hidden  = false
+        boyBtn.setImage(UIImage(named: "littleBoy_blue"), forState: UIControlState.Normal)
+        girlBtn.setImage(UIImage(named: "littleGirl_gray"), forState: UIControlState.Normal)
     }
 }

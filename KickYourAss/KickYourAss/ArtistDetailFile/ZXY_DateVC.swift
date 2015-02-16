@@ -72,6 +72,16 @@ class ZXY_DateVC: UIViewController {
             var vc    = segue.destinationViewController as ZXY_DateChangeInfoVC
             vc.delegate = self
             var parameter = sender as Dictionary<String , AnyObject>
+            if(parameter["tag"] as Int == 1)
+            {
+                vc.setIsInput(false)
+            }
+            
+            if(parameter["tag"] as Int == 4)
+            {
+                vc.setIsInputNum(true)
+            }
+            
             vc.setCurrentTypeDic(parameter)
         }
     }

@@ -51,6 +51,7 @@ class ZXY_LocationRelative: NSObject {
     {
         return currentLocationInfo
     }
+    
 }
 
 extension ZXY_LocationRelative : BMKLocationServiceDelegate , BMKGeoCodeSearchDelegate
@@ -60,6 +61,7 @@ extension ZXY_LocationRelative : BMKLocationServiceDelegate , BMKGeoCodeSearchDe
         var currentTimeStamp = NSTimeIntervalSince1970
         if(currentTimeStamp - previousTimeStamp > 5)
         {
+            NSNotificationCenter.defaultCenter().postNotificationName(ZXY_ConstValue.MAPAUTHKEY.rawValue, object: nil)
             var geoOption  = BMKReverseGeoCodeOption()
             geoOption.reverseGeoPoint = userLocation.location.coordinate
             var flag : Bool = locationGeo.reverseGeoCode(geoOption)
@@ -88,6 +90,11 @@ extension ZXY_LocationRelative : BMKLocationServiceDelegate , BMKGeoCodeSearchDe
     }
     
     func onGetReverseGeoCodeResult(searcher: BMKGeoCodeSearch!, result: BMKReverseGeoCodeResult!, errorCode error: BMKSearchErrorCode) {
+        if(error.value == BMK_SEARCH_NO_ERROR.value)
+        {
+            var cityName = result.addressDetail.city
+            ZXY_UserInfoDetail.sharedInstance.setUserCityName(cityName)
+        }
         currentLocationInfo = result
         previousTimeStamp = NSTimeIntervalSince1970
         

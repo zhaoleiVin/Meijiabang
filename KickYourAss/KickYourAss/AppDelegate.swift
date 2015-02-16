@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,BMKGeneralDelegate{
 
     var window: UIWindow?
     var bmkAuthor : BMKMapManager?
-
+    var hasPresent : Bool = false
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         // Override point for customization after application launch.
@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,BMKGeneralDelegate{
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         UIToolbar.appearance().tintColor = UIColor.themeRedColor()
+        
         
         bmkAuthor = BMKMapManager()
         
@@ -62,11 +63,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,BMKGeneralDelegate{
        if(( bmkAuthor!.start(ZXY_ConstValue.BDMAPKEY.rawValue, generalDelegate: self)))
        {
             println("授权成功")
+            ZXY_LocationRelative.sharedInstance.startLocateUserPosition()
+            ZXY_LocationRelative.sharedInstance.failureBlock = {[weak self](message) -> Void in
+                if(self?.hasPresent == true)
+                {
+                    
+                }
+                else
+                {
+                    var alert = UIAlertView(title: "提示", message: "地图定位失败 \n \(message)", delegate: nil, cancelButtonTitle: "取消")
+                    alert.show()
+                    self?.hasPresent = true
+                }
+            }
+
        }
        else
        {
             println("授权失败")
        }
+        
+        if(ZXY_UserInfoDetail.sharedInstance.isAppFirstLoad())
+        {
+            var storyBoard = UIStoryboard(name: "WelcomeStory", bundle: nil)
+            var vc         = storyBoard.instantiateInitialViewController() as ZXY_WelcomVC
+            self.window?.rootViewController = vc
+        }
+        else
+        {
+            var storyBoard = UIStoryboard(name: "Main" , bundle : nil)
+            var tvc        = storyBoard.instantiateInitialViewController() as MainViewController
+            self.window?.rootViewController = tvc
+        }
+         
         return true
     }
 

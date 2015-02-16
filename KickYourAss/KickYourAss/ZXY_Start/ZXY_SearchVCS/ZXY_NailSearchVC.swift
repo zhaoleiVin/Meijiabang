@@ -14,14 +14,13 @@ class ZXY_NailSearchVC: UIViewController {
     var toHeaderMax: CGFloat = 239.0
     let mapScale   : CLLocationDegrees = 0.001
     var isFirst = true
-    var locService = BMKLocationService()
+    
     //var anno: ZXY_BMKAnnotation?
     var annos : [ZXY_BMKAnnotation]! = []
     var isMapSpanFirst = true
     private var previousPointY : CGFloat = 0.0
-    private var userLocationCoor : CLLocationCoordinate2D?
-    //private var geo : CLGeocoder = CLGeocoder()
-    private var search : BMKGeoCodeSearch = BMKGeoCodeSearch()
+    
+    
     private var isDownLoad :  Bool       = false
     private var isLocationFirst : Bool   = true
     private var previousTimeStamp  = NSDate().timeIntervalSince1970
@@ -32,8 +31,6 @@ class ZXY_NailSearchVC: UIViewController {
     @IBOutlet weak var currentTable: UITableView!
     @IBOutlet weak var littleBoy: UIImageView!
     @IBOutlet weak private var currentMap: BMKMapView!
-    
-    private var cityName : String? = "大连市"
     private var currentPage = 1
     
     private var allUserList : NSMutableArray? = NSMutableArray()
@@ -43,22 +40,10 @@ class ZXY_NailSearchVC: UIViewController {
         tableConsYToHeader.constant = CGFloat(self.view.frame.size.height / 2.0)
         toHeaderMax        = CGFloat(self.view.frame.size.height / 2.0)
         self.setNaviBarRightImage("search_btn")
-        self.startInitMapView()
         self.startInitTable()
-        self.startInitLocationManager()
         self.startInitLittleBoy()
         self.startInitTargetImage()
-        
-        
-        
-        
-        // 判断网络连接状态的代理
-        self.startCheckNetConnect(whenBegain: { () -> Void in
-            
-        }) { () -> Void in
-            
         }
-    }
     
     override func rightNaviButtonAction() {
         self.performSegueWithIdentifier("toSerchArtist", sender: nil)
@@ -69,28 +54,32 @@ class ZXY_NailSearchVC: UIViewController {
         if(isFirst)
         {
             currentMap.frame = self.view.frame
+            
             isFirst = false
         }
         else
         {
         
         }
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("notiFinish"), name: ZXY_ConstValue.MAPAUTHKEY.rawValue, object: nil)
+        
+    }
+    
+    func notiFinish()
+    {
+        self.reFreshLocation(false)
     }
     
     override func viewWillAppear(animated: Bool) {
         currentMap.viewWillAppear()
         currentMap.delegate = self
-        locService.delegate = self
-        search.delegate = self
-        locService.startUserLocationService()
+        
     }
     
     override func viewWillDisappear(animated: Bool) {
         currentMap.viewWillDisappear()
         currentMap.delegate = nil
-        search.delegate = nil
-        locService.delegate = nil
-        locService.stopUserLocationService()
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -109,18 +98,11 @@ class ZXY_NailSearchVC: UIViewController {
             self?.currentTable.footerReleaseToRefreshText = "松开加载"
             self?.currentTable.footerRefreshingText    = "正在加载"
             self?.currentPage++
-            self?.startPOSTSearchList(self?.userLocationCoor)
+            self?.startPOSTSearchList()
             println()
         }
     }
     
-    func setMapViewDefault() -> Void
-    {
-        currentMap.showsUserLocation = false
-        currentMap.region  = BMKCoordinateRegion(center: currentMap.centerCoordinate, span: BMKCoordinateSpan(latitudeDelta: mapScale, longitudeDelta: mapScale))
-    }
-    
-        
     func startInitLittleBoy()
     {
         littleBoy.image = UIImage(named: "search_personCenter")
@@ -130,33 +112,30 @@ class ZXY_NailSearchVC: UIViewController {
         littleBoy.animationRepeatCount = 0
     }
     
-    func startInitMapView()
-    {
-        
-    }
-    
-       
-    func startInitLocationManager()
-    {
-    
-//        locService.delegate = self
-//        locService.startUserLocationService()
-    }
     
     func startInitTargetImage()
     {
         targetImage.userInteractionEnabled = true
-        var tapGes = UITapGestureRecognizer(target: self, action: Selector("reFreshLocation"))
+        var tapGes = UITapGestureRecognizer(target: self, action: Selector("reFreshLocation:"))
         targetImage.addGestureRecognizer(tapGes)
     }
     
-    func reFreshLocation()
+    func reFreshLocation(isNotNoti : Bool)
     {
+        if(isNotNoti)
+        {
+        
+        }
+        else
+        {
+            NSNotificationCenter.defaultCenter().removeObserver(self)
+        }
+        var userLocationCoor :CLLocationCoordinate2D? = ZXY_LocationRelative.sharedInstance.sendLocationToEveryBody()?.coordinate
         if(userLocationCoor != nil)
         {
             currentPage = 1
             self.setCurrentUserLocation(userLocation: userLocationCoor!)
-            self.startPOSTSearchList(userLocationCoor)
+            self.startPOSTSearchList()
         }
     }
     
@@ -191,7 +170,7 @@ class ZXY_NailSearchVC: UIViewController {
 // MARK: - 地图与定位的相关代理 
 extension ZXY_NailSearchVC
 {
-    func startPOSTSearchList(location: CLLocationCoordinate2D?) -> Void
+    func startPOSTSearchList() -> Void
     {
         if(isDownLoad)
         {
@@ -204,37 +183,35 @@ extension ZXY_NailSearchVC
             isDownLoad = true
         }
         
-        if(location == nil)
-        {
-            if(allUserList?.count == 0)
-            {
-                self.currentTable.hidden = true
-            }
-            else
-            {
-                self.currentTable.hidden = false
-            }
-            isDownLoad = false
-            return
-        }
-        
-        if(cityName == nil)
-        {
-            isDownLoad = false
-            return
-        }
         littleBoy.startAnimating()
         var userID : String? = LCYCommon.sharedInstance.userInfo?.userID
         if(userID == nil)
         {
             userID = ""
         }
-        var locations = ZXY_LocationRelative.sharedInstance.gpsToBD(location!)
+        
+        var cityName = ZXY_LocationRelative.sharedInstance.sendCityNameToEveryBody()?.addressDetail.city
+        if(cityName == nil)
+        {
+            cityName = "大连市"
+        }
+        
+        
+        
+        var locations = ZXY_LocationRelative.sharedInstance.sendLocationToEveryBody()?.coordinate
+        if(locations == nil)
+        {
+            self.reloadCurrentTable()
+            return
+        }
+        
+        
+        
         var apiString    = ZXY_ALLApi.ZXY_MainAPI + ZXY_ALLApi.ZXY_SearchListAPI
-        var apiParameter : Dictionary<String , String> = ["user_id" : userID!,
+        var apiParameter : Dictionary<String , AnyObject> = ["user_id" : userID!,
             "city"    : cityName!,
-            "lng"     : "\(locations.longitude)",
-            "lat"     : "\(locations.latitude)",
+            "lng"     : locations!.longitude,
+            "lat"     : locations!.latitude,
             "p"       : "\(currentPage)",
         ]
         ZXY_NetHelperOperate.sharedInstance.startGetDataPost(apiString, parameter: apiParameter, successBlock: {[weak self] (returnDic) -> Void in
@@ -248,6 +225,21 @@ extension ZXY_NailSearchVC
             {
                 self?.allUserList?.addObjectsFromArray(ZXYSearchBaseModel(dictionary: returnDic).data)
             }
+            
+            //ZXY_DataProvider().saveArt(currentArt.nickName, artID: currentArt.userId, artImg: currentArt.headImage)
+            var currentArts : [ZXYData] = self?.allUserList as [ZXYData]
+            currentArts.map({ [weak self](currentArt) -> Void in
+                ZXY_DataProvider().saveArt(currentArt.nickName, artID: currentArt.userId, artImg: currentArt.headImage)
+            })
+            
+            var allUser : [ArtistList]? = ZXY_DataProvider().fetchAll()
+            if(allUser != nil)
+            {
+                allUser?.map({ (cs) -> Void in
+                    println(cs.artistName)
+                })
+            }
+            
             self?.littleBoy.stopAnimating()
             self?.isDownLoad = false
             self?.reloadCurrentTable()
@@ -266,34 +258,6 @@ extension ZXY_NailSearchVC
 // MARK: - 地图与定位的相关代理
 extension ZXY_NailSearchVC :  BMKMapViewDelegate , BMKLocationServiceDelegate , BMKGeoCodeSearchDelegate
 {
-    func didUpdateBMKUserLocation(userLocation: BMKUserLocation!) {
-        var lastLocation : CLLocation = userLocation.location
-        
-        ZXY_UserInfoDetail.sharedInstance.setUserCoordinate("\(lastLocation.coordinate.latitude)", longitude: "\(lastLocation.coordinate.longitude)")
-        var currentTimeStamp = NSDate().timeIntervalSince1970
-        if(currentTimeStamp - previousTimeStamp > 20)
-        {
-            userLocationCoor = lastLocation.coordinate
-            previousTimeStamp = currentTimeStamp
-            self.changeUserLocationToCityName(lastLocation)
-        }
-
-        if(isLocationFirst)
-        {
-            userLocationCoor = lastLocation.coordinate
-            self.setCurrentUserLocation(userLocation: lastLocation.coordinate)
-            self.changeUserLocationToCityName(lastLocation)
-            isLocationFirst = false
-            
-        }
-
-    }
-    
-    func didFailToLocateUserWithError(error: NSError!) {
-        
-    }
-    
-    
     // MARK: - MapViewDelegate
     func mapView(mapView: BMKMapView!, regionWillChangeAnimated animated: Bool) {
         if(isDownLoad)
@@ -371,41 +335,9 @@ extension ZXY_NailSearchVC :  BMKMapViewDelegate , BMKLocationServiceDelegate , 
         self.startInitLittleBoy()
         targetImage.hidden = false
         var currentTimeStamp = NSDate().timeIntervalSince1970
-        self.changeUserLocationToCityName(CLLocation(latitude: mapView.region.center.latitude, longitude: mapView.region.center.longitude))
-        self.startPOSTSearchList(mapView.region.center)
+        self.startPOSTSearchList()
         
         
-    }
-    
-    
-    func onGetReverseGeoCodeResult(searcher: BMKGeoCodeSearch!, result: BMKReverseGeoCodeResult!, errorCode error: BMKSearchErrorCode) {
-        if(error.value == BMK_SEARCH_NO_ERROR.value)
-        {
-            cityName = result.addressDetail.city
-            ZXY_UserInfoDetail.sharedInstance.setUserCityName(cityName)
-        }
-    }
-    
-    
-    func changeUserLocationToCityName(location : CLLocation?)
-    {
-        var currentTimeStamp = NSDate().timeIntervalSince1970
-        if (location != nil)
-        {
-            var geoOption  = BMKReverseGeoCodeOption()
-            geoOption.reverseGeoPoint = location!.coordinate
-            //search.delegate = self
-            var flag : Bool = search.reverseGeoCode(geoOption)
-            if(flag)
-            {
-                
-            }
-            else
-            {
-                //self.showAlertEasy("提示", messageContent: "城市信息获取失败")
-            }
-            
-        }
     }
     
 }
@@ -505,6 +437,11 @@ extension ZXY_NailSearchVC : UITableViewDelegate , UITableViewDataSource , UIScr
             cell.userProfile.image = UIImage(named: "search_personCenter")
         }
         var artCoor  = self.xYStringToCoor(currentUser.longitude, latitude: currentUser.latitude)
+        var userLocationCoor = CLLocationCoordinate2D(latitude: 50, longitude: 50)
+        if(ZXY_LocationRelative.sharedInstance.sendLocationToEveryBody() != nil)
+        {
+            userLocationCoor = ZXY_LocationRelative.sharedInstance.sendLocationToEveryBody()!.coordinate
+        }
         var distance = self.distanceCompareCoor(artCoor, userPosition: userLocationCoor)
         cell.distanceLbl.text = "\(Double(round(100 * distance)/100)) km"
         cell.userProfileEdge.backgroundColor = self.colorWithIndexPath(indexPath)

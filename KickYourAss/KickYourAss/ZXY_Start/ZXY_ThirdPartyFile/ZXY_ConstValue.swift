@@ -9,6 +9,8 @@
 import Foundation
 enum ZXY_ConstValue : String
 {
+    
+    case MAPAUTHKEY = "MapAuthSuccess"
     /**
     *  百度地图密钥
     */

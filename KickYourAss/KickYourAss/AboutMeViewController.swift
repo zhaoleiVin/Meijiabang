@@ -58,11 +58,17 @@ class AboutMeViewController: UICollectionViewController {
         navigationController?.navigationBar.translucent = true
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        //self.tabBarController?.tabBar.hidden = true
+    }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         if LCYCommon.sharedInstance.userInfo != nil {
             aboutMeHeader?.registerButton.hidden = true
         }
+        //self.tabBarController?.tabBar.hidden = false
     }
     
     // MARK: - Actions
@@ -164,6 +170,28 @@ class AboutMeViewController: UICollectionViewController {
             performSegueWithIdentifier("showCare", sender: true)
         case 1:
             performSegueWithIdentifier("showCare", sender: false)
+            
+        case 2:
+            //performSegueWithIdentifier("toMessageVC", sender: nil)
+            var myUserID = LCYCommon.sharedInstance.userInfo?.userID
+            if(myUserID == nil)
+            {
+                
+                
+                
+            }
+            else
+            {
+                MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+                EaseMob.sharedInstance().chatManager.asyncLoginWithUsername(myUserID, password: "12345678", completion: {[weak self] (loginInfo, error) -> Void in
+                    var chatListVC = ChatListViewController()
+                    MBProgressHUD.hideAllHUDsForView(self?.view, animated: true)
+                    self?.navigationController?.pushViewController(chatListVC, animated: true)
+                    }, onQueue: nil)
+            }
+
+            
+            
         case 3:
             let storyBoard = UIStoryboard(name: "ArtistDetailStoryBoard", bundle: nil)
             let collection = storyBoard.instantiateViewControllerWithIdentifier(ZXY_ArtistDetailWorksColleVCID) as ZXY_ArtistDetailWorksColleVC

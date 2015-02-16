@@ -19,17 +19,18 @@
 #import "ChatViewController.h"
 #import "EMSearchDisplayController.h"
 #import "ConvertToCommonEmoticonsHelper.h"
-
+#import "ArtistList.h"
+#import "KickYourAss-swift.h"
 @interface ChatListViewController ()<UITableViewDelegate,UITableViewDataSource, UISearchDisplayDelegate,SRRefreshDelegate, UISearchBarDelegate, IChatManagerDelegate>
 
 @property (strong, nonatomic) NSMutableArray        *dataSource;
 
 @property (strong, nonatomic) UITableView           *tableView;
-@property (nonatomic, strong) EMSearchBar           *searchBar;
 @property (nonatomic, strong) SRRefreshView         *slimeView;
 @property (nonatomic, strong) UIView                *networkStateView;
-
-@property (strong, nonatomic) EMSearchDisplayController *searchController;
+@property (nonatomic , strong) NSString             *mainImgURL;
+@property (assign) CGRect originalFrame;
+//@property (strong, nonatomic) EMSearchDisplayController *searchController;
 
 @end
 
@@ -40,6 +41,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _dataSource = [NSMutableArray array];
+        self.mainImgURL = @"http://www.meijiab.cn/admin/";
     }
     return self;
 }
@@ -48,12 +50,13 @@
 {
     [super viewDidLoad];
     
-    [self.view addSubview:self.searchBar];
+    //[self.view addSubview:self.searchBar];
     [self.view addSubview:self.tableView];
     [self.tableView addSubview:self.slimeView];
     [self networkStateView];
-    
-    [self searchController];
+    [self setNaviBarLeftImage:@"backArrow"];
+    self.view.backgroundColor = [UIColor blueColor];
+    [self userAutoLayout];
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,16 +66,48 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    self.navigationController.navigationBar.hidden = NO;
     [super viewWillAppear:animated];
-    
+//    [self setHidesBottomBarWhenPushed:YES];
+    self.originalFrame = self.tabBarController.tabBar.frame;
+    self.tabBarController.tabBar.hidden = YES;
+    //self.tabBarController.tabBar.frame  = CGRectMake(0, self.view.window.bounds.size.height, self.view.window.bounds.size.width, self.tabBarController.tabBar.frame.size.height);
     [self refreshDataSource];
     [self registerNotifications];
+    
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
+    //self.navigationController.navigationBar.hidden = YES;
+    //self.tabBarController.tabBar.hidden = NO;
+    
     [super viewWillDisappear:animated];
     [self unregisterNotifications];
+}
+
+- (void)leftNaviButtonAction
+{
+    self.tabBarController.tabBar.hidden = false;
+    //self.tabBarController.tabBar.frame  = self.originalFrame;
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)userAutoLayout
+{
+    self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.view.autoresizesSubviews = YES;
+    self.view.clipsToBounds = NO;
+    self.tableView.autoresizesSubviews = YES;
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.tableView attribute:NSLayoutAttributeBottom multiplier:1 constant:-45]];
+    
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.tableView attribute:NSLayoutAttributeLeading multiplier:1 constant:0]];
+    
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.tableView attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
+    
+    
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.tableView attribute:NSLayoutAttributeTrailing multiplier:1 constant:0]];
+    
 }
 
 #pragma mark - getter
@@ -95,24 +130,14 @@
     return _slimeView;
 }
 
-- (UISearchBar *)searchBar
-{
-    if (!_searchBar) {
-        _searchBar = [[EMSearchBar alloc] initWithFrame: CGRectMake(0, 0, self.view.frame.size.width, 44)];
-        _searchBar.delegate = self;
-        _searchBar.placeholder = NSLocalizedString(@"search", @"Search");
-        _searchBar.backgroundColor = [UIColor colorWithRed:0.747 green:0.756 blue:0.751 alpha:1.000];
-    }
-    
-    return _searchBar;
-}
 
 - (UITableView *)tableView
 {
     if (_tableView == nil) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.searchBar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.searchBar.frame.size.height) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height ) style:UITableViewStylePlain];
+        
         _tableView.backgroundColor = [UIColor whiteColor];
-        _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+        //_tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.tableFooterView = [[UIView alloc] init];
@@ -123,68 +148,6 @@
     return _tableView;
 }
 
-- (EMSearchDisplayController *)searchController
-{
-    if (_searchController == nil) {
-        _searchController = [[EMSearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
-        _searchController.delegate = self;
-        _searchController.searchResultsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        
-        __weak ChatListViewController *weakSelf = self;
-        [_searchController setCellForRowAtIndexPathCompletion:^UITableViewCell *(UITableView *tableView, NSIndexPath *indexPath) {
-            static NSString *CellIdentifier = @"ChatListCell";
-            ChatListCell *cell = (ChatListCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            
-            // Configure the cell...
-            if (cell == nil) {
-                cell = [[ChatListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            }
-            
-            EMConversation *conversation = [weakSelf.searchController.resultsSource objectAtIndex:indexPath.row];
-            cell.name = conversation.chatter;
-            if (!conversation.isGroup) {
-                cell.placeholderImage = [UIImage imageNamed:@"chatListCellHead.png"];
-            }
-            else{
-                NSString *imageName = @"groupPublicHeader";
-                NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
-                for (EMGroup *group in groupArray) {
-                    if ([group.groupId isEqualToString:conversation.chatter]) {
-                        cell.name = group.groupSubject;
-                        imageName = group.isPublic ? @"groupPublicHeader" : @"groupPrivateHeader";
-                        break;
-                    }
-                }
-                cell.placeholderImage = [UIImage imageNamed:imageName];
-            }
-            cell.detailMsg = [weakSelf subTitleMessageByConversation:conversation];
-            cell.time = [weakSelf lastMessageTimeByConversation:conversation];
-            cell.unreadCount = [weakSelf unreadMessageCountByConversation:conversation];
-            if (indexPath.row % 2 == 1) {
-                cell.contentView.backgroundColor = RGBACOLOR(246, 246, 246, 1);
-            }else{
-                cell.contentView.backgroundColor = [UIColor whiteColor];
-            }
-            return cell;
-        }];
-        
-        [_searchController setHeightForRowAtIndexPathCompletion:^CGFloat(UITableView *tableView, NSIndexPath *indexPath) {
-            return [ChatListCell tableView:tableView heightForRowAtIndexPath:indexPath];
-        }];
-        
-        [_searchController setDidSelectRowAtIndexPathCompletion:^(UITableView *tableView, NSIndexPath *indexPath) {
-            [tableView deselectRowAtIndexPath:indexPath animated:YES];
-            [weakSelf.searchController.searchBar endEditing:YES];
-            
-            EMConversation *conversation = [weakSelf.searchController.resultsSource objectAtIndex:indexPath.row];
-            ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:conversation.chatter isGroup:conversation.isGroup];
-            chatVC.title = conversation.chatter;
-            [weakSelf.navigationController pushViewController:chatVC animated:YES];
-        }];
-    }
-    
-    return _searchController;
-}
 
 - (UIView *)networkStateView
 {
@@ -294,22 +257,28 @@
         cell = [[ChatListCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identify];
     }
     EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
-    cell.name = conversation.chatter;
-    if (!conversation.isGroup) {
+
+    ZXY_DataProvider *provider   = [[ZXY_DataProvider alloc] init];
+    ArtistList *currentArt = [provider fetchArt:conversation.chatter];
+    if(currentArt != nil)
+    {
+        
+        cell.name = currentArt.artistName;
+        NSString *stringURL = [NSString stringWithFormat:@"%@%@",self.mainImgURL,currentArt.artistImg];
+        if([currentArt.artistImg hasPrefix:@"http"])
+        {
+            stringURL = currentArt.artistImg;
+        }
+        cell.imageURL = [NSURL URLWithString:stringURL];
+    }
+    else
+    {
+        cell.name = conversation.chatter;
         cell.placeholderImage = [UIImage imageNamed:@"chatListCellHead.png"];
     }
-    else{
-        NSString *imageName = @"groupPublicHeader";
-        NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
-        for (EMGroup *group in groupArray) {
-            if ([group.groupId isEqualToString:conversation.chatter]) {
-                cell.name = group.groupSubject;
-                imageName = group.isPublic ? @"groupPublicHeader" : @"groupPrivateHeader";
-                break;
-            }
-        }
-        cell.placeholderImage = [UIImage imageNamed:imageName];
-    }
+    
+    
+    
     cell.detailMsg = [self subTitleMessageByConversation:conversation];
     cell.time = [self lastMessageTimeByConversation:conversation];
     cell.unreadCount = [self unreadMessageCountByConversation:conversation];
@@ -347,8 +316,30 @@
     }
     
     NSString *chatter = conversation.chatter;
+    ZXY_DataProvider *provider   = [[ZXY_DataProvider alloc] init];
+    ArtistList *currentArt = [provider fetchArt:conversation.chatter];
     chatController = [[ChatViewController alloc] initWithChatter:chatter isGroup:conversation.isGroup];
     chatController.title = title;
+    chatController.shouleEx = YES;
+    if(currentArt != nil)
+    {
+        chatController.title = currentArt.artistName;
+        NSString *stringURL = [NSString stringWithFormat:@"%@%@",self.mainImgURL,currentArt.artistImg];
+        if([currentArt.artistImg hasPrefix:@"http"])
+        {
+            stringURL = currentArt.artistImg;
+        }
+        chatController.imgURLTo = stringURL;
+        [[LCYCommon sharedInstance] getUserDetailInfo:^(CYMJUserInfoData *hello) {
+            NSString *stringURLMe = [NSString stringWithFormat:@"%@%@",self.mainImgURL,hello.headImage];
+            chatController.imgURLMy = stringURLMe;
+        } failBlock:^{
+            
+        }];
+        
+        
+    }
+    
     [self.navigationController pushViewController:chatController animated:YES];
 }
 
@@ -376,18 +367,6 @@
     return YES;
 }
 
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-{
-    [[RealtimeSearchUtil currentUtil] realtimeSearchWithSource:self.dataSource searchText:(NSString *)searchText collationStringSelector:@selector(chatter) resultBlock:^(NSArray *results) {
-        if (results) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.searchController.resultsSource removeAllObjects];
-                [self.searchController.resultsSource addObjectsFromArray:results];
-                [self.searchController.searchResultsTableView reloadData];
-            });
-        }
-    }];
-}
 
 - (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
 {
