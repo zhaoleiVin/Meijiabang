@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,BMKGeneralDelegate{
         
         bmkAuthor = BMKMapManager()
         
-        EaseMob.sharedInstance().registerSDKWithAppKey("duostec#meijiabang", apnsCertName: "duostecIOSDev")
+        EaseMob.sharedInstance().registerSDKWithAppKey("duostec#meijiabang", apnsCertName: "duostecIOSDis")
         EaseMob.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
         var myUserID = LCYCommon.sharedInstance.userInfo?.userID

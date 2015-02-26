@@ -3035,7 +3035,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8b0076d7-f3cc-40bf-84bc-be5db22b1a70";
+				PROVISIONING_PROFILE = "e78216a0-31e5-499d-895f-fad883f58685";
 				SWIFT_OBJC_BRIDGING_HEADER = "KickYourAss/Bridging-Header.h";
 			};
 			name = Debug;
@@ -3056,7 +3056,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8b0076d7-f3cc-40bf-84bc-be5db22b1a70";
+				PROVISIONING_PROFILE = "e78216a0-31e5-499d-895f-fad883f58685";
 				SWIFT_OBJC_BRIDGING_HEADER = "KickYourAss/Bridging-Header.h";
 			};
 			name = Release;
