@@ -44,7 +44,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search_personCenter" translatesAutoresizingMaskIntoConstraints="NO" id="FCA-pl-av9">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="search_personCenter" translatesAutoresizingMaskIntoConstraints="NO" id="FCA-pl-av9">
                                 <rect key="frame" x="286" y="125" width="29" height="34"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search_location" translatesAutoresizingMaskIntoConstraints="NO" id="stq-hD-gPL">
@@ -95,11 +95,11 @@
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nailartist_down" translatesAutoresizingMaskIntoConstraints="NO" id="kC9-zv-kHL">
                                                             <rect key="frame" x="44" y="2" width="14" height="25"/>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nailartist_down" translatesAutoresizingMaskIntoConstraints="NO" id="gQA-rK-poh">
-                                                            <rect key="frame" x="66" y="2" width="14" height="25"/>
-                                                        </imageView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nailartist_down" translatesAutoresizingMaskIntoConstraints="NO" id="5uF-gO-1HR">
                                                             <rect key="frame" x="88" y="2" width="14" height="25"/>
+                                                        </imageView>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nailartist_down" translatesAutoresizingMaskIntoConstraints="NO" id="gQA-rK-poh">
+                                                            <rect key="frame" x="66" y="2" width="14" height="25"/>
                                                         </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -370,7 +370,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wlv-2a-JVe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="355.5" y="482"/>
+            <point key="canvasLocation" x="316" y="470"/>
         </scene>
         <!--Search ArtistVC-->
         <scene sceneID="fmb-a1-0iv">

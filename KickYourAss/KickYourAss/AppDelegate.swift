@@ -91,9 +91,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,BMKGeneralDelegate{
         }
         else
         {
-            var storyBoard = UIStoryboard(name: "Main" , bundle : nil)
-            var tvc        = storyBoard.instantiateInitialViewController() as MainViewController
-            self.window?.rootViewController = tvc
+//            var storyBoard = UIStoryboard(name: "Main" , bundle : nil)
+//            var tvc        = storyBoard.instantiateInitialViewController() as MainViewController
+//            self.window?.rootViewController = tvc
         }
          
         return true

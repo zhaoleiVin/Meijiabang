@@ -63,6 +63,7 @@
 		8B17CE741A7B874B002C7F44 /* ZXY_UserCommentBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B17CE711A7B874B002C7F44 /* ZXY_UserCommentBase.m */; };
 		8B17CE751A7B874B002C7F44 /* ZXY_UserCommentData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B17CE731A7B874B002C7F44 /* ZXY_UserCommentData.m */; };
 		8B195F671A849D26004D6BC0 /* ZXY_SearchArtistVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B195F661A849D26004D6BC0 /* ZXY_SearchArtistVC.swift */; };
+		8B1FDAF81A9EE13400EF0ECF /* ZXY_ReportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1FDAF71A9EE13400EF0ECF /* ZXY_ReportVC.swift */; };
 		8B46C43C1A7729A70093B5DA /* ZXY_HomeMostFashionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46C43B1A7729A70093B5DA /* ZXY_HomeMostFashionVC.swift */; };
 		8B46C43E1A7729C70093B5DA /* ZXY_HomeSqureVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46C43D1A7729C70093B5DA /* ZXY_HomeSqureVC.swift */; };
 		8B46C4401A772A0A0093B5DA /* ZXY_HomeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46C43F1A772A0A0093B5DA /* ZXY_HomeContainer.swift */; };
@@ -534,6 +535,7 @@
 		8B17CE721A7B874B002C7F44 /* ZXY_UserCommentData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXY_UserCommentData.h; sourceTree = "<group>"; };
 		8B17CE731A7B874B002C7F44 /* ZXY_UserCommentData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXY_UserCommentData.m; sourceTree = "<group>"; };
 		8B195F661A849D26004D6BC0 /* ZXY_SearchArtistVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZXY_SearchArtistVC.swift; sourceTree = "<group>"; };
+		8B1FDAF71A9EE13400EF0ECF /* ZXY_ReportVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZXY_ReportVC.swift; sourceTree = "<group>"; };
 		8B46C43B1A7729A70093B5DA /* ZXY_HomeMostFashionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZXY_HomeMostFashionVC.swift; sourceTree = "<group>"; };
 		8B46C43D1A7729C70093B5DA /* ZXY_HomeSqureVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZXY_HomeSqureVC.swift; sourceTree = "<group>"; };
 		8B46C43F1A772A0A0093B5DA /* ZXY_HomeContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZXY_HomeContainer.swift; sourceTree = "<group>"; };
@@ -2263,6 +2265,7 @@
 				8BEEA1991A7A03010068B520 /* ZXY_ArtistCommentTabVC.swift */,
 				8B80219B1A89D0CD00F4C890 /* ZXY_ChangeCommentVC.swift */,
 				8BA49BAD1A7F22EC0047EB85 /* ZXY_NailPictureVC.swift */,
+				8B1FDAF71A9EE13400EF0ECF /* ZXY_ReportVC.swift */,
 				8BEEA1951A79F4540068B520 /* ArtistDetailStoryBoard.storyboard */,
 				8BA49BAF1A7F3B3F0047EB85 /* tabAttrPlist.plist */,
 				8B8021A31A89EAD900F4C890 /* orderInfoPList.plist */,
@@ -2816,6 +2819,7 @@
 				8BD2189A1A8B4D7700DDF441 /* EMChatViewBaseCell.m in Sources */,
 				8BD2194C1A8B4DE300DDF441 /* NSDateFormatter+Category.m in Sources */,
 				28C421071A7A255300B1EB5B /* RegisterButtonCell.swift in Sources */,
+				8B1FDAF81A9EE13400EF0ECF /* ZXY_ReportVC.swift in Sources */,
 				8BD219081A8B4DA200DDF441 /* EMSDImageCache.m in Sources */,
 				289A303F1A78A32600B5350C /* RegisterViewController.swift in Sources */,
 				8BC5CC761A71F16900C513DF /* ZXY_BMKAnnotation.swift in Sources */,
@@ -3035,8 +3039,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e78216a0-31e5-499d-895f-fad883f58685";
+				PROVISIONING_PROFILE = "8b0076d7-f3cc-40bf-84bc-be5db22b1a70";
 				SWIFT_OBJC_BRIDGING_HEADER = "KickYourAss/Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -3056,8 +3061,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e78216a0-31e5-499d-895f-fad883f58685";
+				PROVISIONING_PROFILE = "8b0076d7-f3cc-40bf-84bc-be5db22b1a70";
 				SWIFT_OBJC_BRIDGING_HEADER = "KickYourAss/Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -39,7 +39,10 @@ class ZXY_NailPictureVC: UIViewController {
         super.viewDidLoad()
         self.begainInit()
         self.startDownLoadData()
+        
     }
+    
+    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -50,6 +53,10 @@ class ZXY_NailPictureVC: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    func reportAction()
+    {
+        self.performSegueWithIdentifier("toReportVC", sender: nil)
+    }
 
     func begainInit()
     {
@@ -105,6 +112,20 @@ class ZXY_NailPictureVC: UIViewController {
         ZXY_NetHelperOperate().startGetDataPost(urlString, parameter: ["user_id": myUID! ,"album_id": albumID!], successBlock: {[weak self] (returnDic) -> Void in
             MBProgressHUD().hide(true)
             self?.dataForTable = ZXY_PictureDetailBase(dictionary: returnDic)
+            var myUserID = LCYCommon.sharedInstance.userInfo?.userID
+            if(myUserID == nil)
+            {
+                myUserID = ""
+            }
+            
+            if(myUserID == self?.dataForTable?.data?.user?.userId)
+            {
+                
+            }
+            else
+            {
+                self?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "举报", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("reportAction"))
+            }
             self?.reloadCurrentTable()
             self?.startReloadTabItem()
             println()

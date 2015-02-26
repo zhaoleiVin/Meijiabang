@@ -247,40 +247,6 @@
             </objects>
             <point key="canvasLocation" x="323" y="446"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="XbQ-vw-rTD">
-            <objects>
-                <viewController id="JLy-HQ-JBA" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="F1c-nU-Kjo"/>
-                        <viewControllerLayoutGuide type="bottom" id="e7J-ie-fv6"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="JNs-43-M9b">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lcw-RL-4d7">
-                                <rect key="frame" x="137" y="89" width="57" height="22"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <inset key="titleEdgeInsets" minX="-35" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <inset key="imageEdgeInsets" minX="40" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="热门" image="arrowDown">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="selected" image="arrowUp"/>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="0.3921568627" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
-                    </view>
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="200"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="b5w-DS-7xJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="798" y="166"/>
-        </scene>
         <!--美甲师-->
         <scene sceneID="0kZ-ho-7lY">
             <objects>
