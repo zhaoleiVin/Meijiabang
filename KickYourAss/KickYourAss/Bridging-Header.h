@@ -27,6 +27,8 @@
 #import <UIKit/UIKit.h>
 #import "ChatListViewController.h"
 #import "ArtistList.h"
+#import "GPUImage/GPUImage.h"
+
 // ⬇️ 超逸专区
 #import "UIImage+Resize.h"
 

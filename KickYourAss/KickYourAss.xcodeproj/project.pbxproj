@@ -43,7 +43,6 @@
 		28D52E691A6CD06200C17CF0 /* KickYourAss.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28D52E671A6CD06200C17CF0 /* KickYourAss.xcdatamodeld */; };
 		28D52E6E1A6CD06200C17CF0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28D52E6C1A6CD06200C17CF0 /* Main.storyboard */; };
 		28D52E701A6CD06300C17CF0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28D52E6F1A6CD06300C17CF0 /* Images.xcassets */; };
-		28D52E731A6CD06300C17CF0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28D52E711A6CD06300C17CF0 /* LaunchScreen.xib */; };
 		28D52E7F1A6CD06300C17CF0 /* KickYourAssTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D52E7E1A6CD06300C17CF0 /* KickYourAssTests.swift */; };
 		28D52E891A6CD2CB00C17CF0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D52E881A6CD2CB00C17CF0 /* MainViewController.swift */; };
 		28D52E8B1A6CD2EF00C17CF0 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28D52E8A1A6CD2EF00C17CF0 /* Search.storyboard */; };
@@ -64,6 +63,7 @@
 		8B17CE751A7B874B002C7F44 /* ZXY_UserCommentData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B17CE731A7B874B002C7F44 /* ZXY_UserCommentData.m */; };
 		8B195F671A849D26004D6BC0 /* ZXY_SearchArtistVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B195F661A849D26004D6BC0 /* ZXY_SearchArtistVC.swift */; };
 		8B1FDAF81A9EE13400EF0ECF /* ZXY_ReportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1FDAF71A9EE13400EF0ECF /* ZXY_ReportVC.swift */; };
+		8B1FDAFB1A9F0CE000EF0ECF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B1FDAF91A9F0CE000EF0ECF /* LaunchScreen.xib */; };
 		8B46C43C1A7729A70093B5DA /* ZXY_HomeMostFashionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46C43B1A7729A70093B5DA /* ZXY_HomeMostFashionVC.swift */; };
 		8B46C43E1A7729C70093B5DA /* ZXY_HomeSqureVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46C43D1A7729C70093B5DA /* ZXY_HomeSqureVC.swift */; };
 		8B46C4401A772A0A0093B5DA /* ZXY_HomeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46C43F1A772A0A0093B5DA /* ZXY_HomeContainer.swift */; };
@@ -503,7 +503,6 @@
 		28D52E681A6CD06200C17CF0 /* KickYourAss.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = KickYourAss.xcdatamodel; sourceTree = "<group>"; };
 		28D52E6D1A6CD06200C17CF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		28D52E6F1A6CD06300C17CF0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		28D52E721A6CD06300C17CF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		28D52E781A6CD06300C17CF0 /* KickYourAssTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KickYourAssTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		28D52E7D1A6CD06300C17CF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28D52E7E1A6CD06300C17CF0 /* KickYourAssTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KickYourAssTests.swift; sourceTree = "<group>"; };
@@ -536,6 +535,7 @@
 		8B17CE731A7B874B002C7F44 /* ZXY_UserCommentData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXY_UserCommentData.m; sourceTree = "<group>"; };
 		8B195F661A849D26004D6BC0 /* ZXY_SearchArtistVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZXY_SearchArtistVC.swift; sourceTree = "<group>"; };
 		8B1FDAF71A9EE13400EF0ECF /* ZXY_ReportVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZXY_ReportVC.swift; sourceTree = "<group>"; };
+		8B1FDAFA1A9F0CE000EF0ECF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		8B46C43B1A7729A70093B5DA /* ZXY_HomeMostFashionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZXY_HomeMostFashionVC.swift; sourceTree = "<group>"; };
 		8B46C43D1A7729C70093B5DA /* ZXY_HomeSqureVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZXY_HomeSqureVC.swift; sourceTree = "<group>"; };
 		8B46C43F1A772A0A0093B5DA /* ZXY_HomeContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZXY_HomeContainer.swift; sourceTree = "<group>"; };
@@ -579,7 +579,6 @@
 		8B7183A31A8B8DDB0004AB15 /* KickYourAss-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KickYourAss-Prefix.pch"; sourceTree = "<group>"; };
 		8B77F1201A6E852C002F147E /* ZXY_SearchArtistCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZXY_SearchArtistCell.swift; sourceTree = "<group>"; };
 		8B7B77571A81D6520004DF84 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
-		8B7B77581A81D6520004DF84 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		8B7B77591A81D8670004DF84 /* ZXY_ImagePickerCollectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZXY_ImagePickerCollectionVC.swift; sourceTree = "<group>"; };
 		8B7B775B1A81DC230004DF84 /* ZXY_ImagePickCoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZXY_ImagePickCoCell.swift; sourceTree = "<group>"; };
 		8B7B775F1A8212480004DF84 /* ZXY_ImgPickBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZXY_ImgPickBundle.bundle; sourceTree = "<group>"; };
@@ -1215,7 +1214,6 @@
 				8BB235BD1A6DF57F003530AA /* ZXY_Start */,
 				28D52E901A6CD31000C17CF0 /* AboutMe.storyboard */,
 				28D52E6F1A6CD06300C17CF0 /* Images.xcassets */,
-				28D52E711A6CD06300C17CF0 /* LaunchScreen.xib */,
 				28D52E671A6CD06200C17CF0 /* KickYourAss.xcdatamodeld */,
 				8B53F0191A91C13300FE4FF2 /* ArtistList.h */,
 				8B53F01A1A91C13300FE4FF2 /* ArtistList.m */,
@@ -1227,6 +1225,7 @@
 		28D52E631A6CD06200C17CF0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8B1FDAF91A9F0CE000EF0ECF /* LaunchScreen.xib */,
 				28D52E641A6CD06200C17CF0 /* Info.plist */,
 				8BF0F9B71A6E2CDF003F376A /* Bridging-Header.h */,
 				8B7183A31A8B8DDB0004AB15 /* KickYourAss-Prefix.pch */,
@@ -2481,7 +2480,6 @@
 				28D52E8D1A6CD2F700C17CF0 /* Home.storyboard in Resources */,
 				8BD21AD21A8B4F0D00DDF441 /* chatBar_more_faceSelected@2x.png in Resources */,
 				8BD21AE51A8B4F0D00DDF441 /* chatBar_keyboard.png in Resources */,
-				28D52E731A6CD06300C17CF0 /* LaunchScreen.xib in Resources */,
 				8BD21ACB1A8B4F0D00DDF441 /* chatBar_more_card.png in Resources */,
 				8BD21B451A8B4F1F00DDF441 /* chatListCellHead.png in Resources */,
 				28D52E8F1A6CD2FE00C17CF0 /* Artist.storyboard in Resources */,
@@ -2518,6 +2516,7 @@
 				8BD21B141A8B4F0D00DDF441 /* chat_receiver_audio_playing_full.png in Resources */,
 				8BD21AB41A8B4F0D00DDF441 /* VoiceSearchFeedback014@2x.png in Resources */,
 				8BD21AAD1A8B4F0D00DDF441 /* VoiceSearchFeedback011.png in Resources */,
+				8B1FDAFB1A9F0CE000EF0ECF /* LaunchScreen.xib in Resources */,
 				8BD21ABA1A8B4F0D00DDF441 /* VoiceSearchFeedback017@2x.png in Resources */,
 				8BD21ABF1A8B4F0D00DDF441 /* VoiceSearchFeedback020.png in Resources */,
 				8BD21ACD1A8B4F0D00DDF441 /* chatBar_more_cardSelected.png in Resources */,
@@ -2920,11 +2919,10 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		28D52E711A6CD06300C17CF0 /* LaunchScreen.xib */ = {
+		8B1FDAF91A9F0CE000EF0ECF /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				28D52E721A6CD06300C17CF0 /* Base */,
-				8B7B77581A81D6520004DF84 /* zh-Hans */,
+				8B1FDAFA1A9F0CE000EF0ECF /* Base */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";

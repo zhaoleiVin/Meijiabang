@@ -51,6 +51,7 @@ class ZXY_NailSearchVC: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        self.reFreshLocation(true)
         if(isFirst)
         {
             currentMap.frame = self.view.frame
@@ -64,6 +65,8 @@ class ZXY_NailSearchVC: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("notiFinish"), name: ZXY_ConstValue.MAPAUTHKEY.rawValue, object: nil)
         
     }
+    
+
     
     func notiFinish()
     {

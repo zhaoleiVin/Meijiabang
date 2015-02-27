@@ -35,6 +35,14 @@ class ZXY_AfterPickImgVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func leftNaviButtonAction() {
+        if(isBarHidden)
+        {
+            self.navigationController?.navigationBar.hidden = true
+        }
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
     func submitAction()
     {
         if(desTxt?.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0)
@@ -71,9 +79,9 @@ class ZXY_AfterPickImgVC: UIViewController {
         MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         var parameter : Dictionary<String , AnyObject> = ["user_id": userID! , "description" : desTxt!.text ]
         ZXY_NetHelperOperate().startPostImg(urlString, parameter: parameter, imgData: dataArr, fileKey: "Filedata[]", success: {[weak self] (returnDic) -> Void in
-            "Hello"
+            
             MBProgressHUD.hideHUDForView(self?.view, animated: true)
-            self?.navigationController?.popToRootViewControllerAnimated(true)
+            self?.leftNaviButtonAction()
             return
         }) { [weak self](failError) -> Void in
             println(failError)
@@ -100,10 +108,6 @@ class ZXY_AfterPickImgVC: UIViewController {
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        if(isBarHidden)
-        {
-            self.navigationController?.navigationBar.hidden = true
-        }
     }
 
     /*

@@ -30,7 +30,10 @@ class ZXY_ReportVC: UIViewController {
     func submitAction()
     {
         MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-        dispatch_after(2000, dispatch_get_main_queue()) { [weak self]() -> Void in
+        dispatch_after(dispatch_time(
+            DISPATCH_TIME_NOW,
+            Int64(2 * Double(NSEC_PER_SEC))
+            ), dispatch_get_main_queue()) { [weak self]() -> Void in
              MBProgressHUD().hide(true)
              self?.navigationController?.popViewControllerAnimated(true)
         }

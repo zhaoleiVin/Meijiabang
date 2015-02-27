@@ -15,6 +15,7 @@ protocol ZXY_PickImgPictureVCDelegate : class
 
 class ZXY_PickImgPictureVC: UIViewController {
 
+    var isNaviInitHide : Bool = false
     @IBOutlet weak var currentImgV: UIImageView!
     var thisImage : UIImage!
     
@@ -27,7 +28,7 @@ class ZXY_PickImgPictureVC: UIViewController {
         self.setNaviBarRightImage("trashImg")
         self.navigationController?.navigationBar.barTintColor = UIColor.blackColor()
         self.title = "1/1"
-        // Do any additional setup after loading the view.
+        
     }
 
     func setCurrentImage(currentImg : UIImage)
