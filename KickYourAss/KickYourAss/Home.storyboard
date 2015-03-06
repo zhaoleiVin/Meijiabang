@@ -354,22 +354,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q7a-GI-FFn">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q7a-GI-FFn">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="noNet" translatesAutoresizingMaskIntoConstraints="NO" id="2S5-u2-Kay">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noNet" translatesAutoresizingMaskIntoConstraints="NO" id="2S5-u2-Kay">
                                         <rect key="frame" x="270" y="233" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="2fC-YH-afl"/>
+                                            <constraint firstAttribute="width" constant="60" id="UJZ-WD-m8z"/>
+                                        </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="网络不给力，请点击刷新" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4hJ-cB-bEt">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="网络不给力，请点击刷新" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4hJ-cB-bEt">
                                         <rect key="frame" x="228" y="309" width="145" height="53"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="145" id="Aj2-YC-4ZA"/>
+                                            <constraint firstAttribute="height" constant="53" id="QVb-wg-vVd"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.49803921569999998" green="0.49803921569999998" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="2S5-u2-Kay" secondAttribute="centerX" id="31v-9G-xsN"/>
+                                    <constraint firstAttribute="centerX" secondItem="4hJ-cB-bEt" secondAttribute="centerX" id="6XV-sU-CiI"/>
+                                    <constraint firstItem="4hJ-cB-bEt" firstAttribute="top" secondItem="2S5-u2-Kay" secondAttribute="bottom" constant="16" id="D3z-OW-qWc"/>
+                                    <constraint firstItem="2S5-u2-Kay" firstAttribute="top" secondItem="q7a-GI-FFn" secondAttribute="top" constant="233" id="Jnh-uj-uSI"/>
+                                    <constraint firstItem="4hJ-cB-bEt" firstAttribute="top" secondItem="2S5-u2-Kay" secondAttribute="bottom" constant="16" id="Oc3-x5-BAC"/>
+                                    <constraint firstAttribute="bottom" secondItem="4hJ-cB-bEt" secondAttribute="bottom" constant="238" id="nMZ-4Q-xPT"/>
+                                </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="174" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="hAe-Km-atx">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="174" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="hAe-Km-atx">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -625,6 +641,15 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="q7a-GI-FFn" firstAttribute="bottom" secondItem="EbN-6j-0Dt" secondAttribute="top" id="1PU-IV-grG"/>
+                            <constraint firstItem="q7a-GI-FFn" firstAttribute="bottom" secondItem="hAe-Km-atx" secondAttribute="bottom" id="4AP-Bs-Ays"/>
+                            <constraint firstItem="q7a-GI-FFn" firstAttribute="top" secondItem="hAe-Km-atx" secondAttribute="top" id="4dA-Rs-47o"/>
+                            <constraint firstItem="q7a-GI-FFn" firstAttribute="leading" secondItem="hAe-Km-atx" secondAttribute="leading" id="YMH-nX-Hx0"/>
+                            <constraint firstItem="q7a-GI-FFn" firstAttribute="trailing" secondItem="hAe-Km-atx" secondAttribute="trailing" id="f85-AM-hXV"/>
+                            <constraint firstAttribute="trailing" secondItem="q7a-GI-FFn" secondAttribute="trailing" id="jhJ-V8-BgS"/>
+                            <constraint firstItem="q7a-GI-FFn" firstAttribute="leading" secondItem="Bra-QO-Ofl" secondAttribute="leading" id="sko-k3-nob"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="backFreshView" destination="q7a-GI-FFn" id="7Ow-F5-LvX"/>
