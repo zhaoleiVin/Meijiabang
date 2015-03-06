@@ -19,7 +19,7 @@ class LCYVersionViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         if let version = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String {
-            versionLabel.text = "版本号：" + version
+            versionLabel.text = "版本号：1.0.1"
         } else {
             versionLabel.text = nil
         }

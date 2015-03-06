@@ -1474,8 +1474,8 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon4_58" translatesAutoresizingMaskIntoConstraints="NO" id="bUb-Z1-uqo">
                                 <rect key="frame" x="265" y="211" width="70" height="70"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="版本号：1.0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPN-h3-dHN">
-                                <rect key="frame" x="265" y="289" width="71" height="16"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="版本号：1.0.1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPN-h3-dHN">
+                                <rect key="frame" x="265" y="289" width="89" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -1490,7 +1490,7 @@
                             <constraint firstItem="Ki3-90-0ew" firstAttribute="top" secondItem="RgI-hb-uUz" secondAttribute="bottom" constant="8" id="dRI-kl-qoR"/>
                             <constraint firstItem="RgI-hb-uUz" firstAttribute="top" secondItem="0K1-y1-TSW" secondAttribute="bottom" constant="8" id="wpG-Za-7YN"/>
                             <constraint firstAttribute="centerX" secondItem="bUb-Z1-uqo" secondAttribute="centerX" id="wsj-CK-vgR"/>
-                            <constraint firstAttribute="centerX" secondItem="MPN-h3-dHN" secondAttribute="centerX" id="xht-If-xu4"/>
+                            <constraint firstAttribute="centerX" secondItem="MPN-h3-dHN" secondAttribute="centerX" constant="-9.5" id="xht-If-xu4"/>
                         </constraints>
                     </view>
                     <connections>

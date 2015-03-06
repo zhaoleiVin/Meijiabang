@@ -121,12 +121,23 @@ class ZXY_NailArtistListVC: UIViewController {
                 self?.userListData.addObjectsFromArray(ZXYArtistListBase(dictionary: returnDic).data)
             }
             
-            var artistList : [ZXYArtistListData] = self?.userListData as [ZXYArtistListData]
+//            var artistList : [ZXYArtistListData] = self?.userListData as [ZXYArtistListData]
+//            
+//            artistList.map({[weak self] (currentArt) -> Void in
+//                ZXY_DataProvider().saveArt(currentArt.nickName, artID: currentArt.userId, artImg: currentArt.headImage)
+//                return
+//            })
             
-            artistList.map({[weak self] (currentArt) -> Void in
-                ZXY_DataProvider().saveArt(currentArt.nickName, artID: currentArt.userId, artImg: currentArt.headImage)
-                return
-            })
+            for var i = 0 ; i < self?.userListData.count ; i++
+            {
+                var currentUser : ZXYArtistListData? = self?.userListData[i] as? ZXYArtistListData
+                
+                if(currentUser != nil)
+                {
+                    ZXY_DataProvider().saveArt(currentUser!.nickName, artID: currentUser!.userId, artImg: currentUser!.headImage)
+
+                }
+            }
             
             self?.reloadTableView()
             self?.currentTable.footerEndRefreshing()

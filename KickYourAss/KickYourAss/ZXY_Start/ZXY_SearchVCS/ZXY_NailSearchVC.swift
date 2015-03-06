@@ -51,9 +51,10 @@ class ZXY_NailSearchVC: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.reFreshLocation(true)
+        
         if(isFirst)
         {
+            self.reFreshLocation(true)
             currentMap.frame = self.view.frame
             
             isFirst = false
@@ -230,10 +231,17 @@ extension ZXY_NailSearchVC
             }
             
             //ZXY_DataProvider().saveArt(currentArt.nickName, artID: currentArt.userId, artImg: currentArt.headImage)
-            var currentArts : [ZXYData] = self?.allUserList as [ZXYData]
-            currentArts.map({ [weak self](currentArt) -> Void in
-                ZXY_DataProvider().saveArt(currentArt.nickName, artID: currentArt.userId, artImg: currentArt.headImage)
-            })
+            var currentArts  = self?.allUserList
+            for var i = 0 ;i < self?.allUserList?.count; i++
+            {
+                var art = self?.allUserList?[i] as ZXYData
+                ZXY_DataProvider().saveArt(art.nickName, artID: art.userId, artImg: art.headImage)
+            }
+            
+//            currentArts.map({ [weak self](currentArt) -> Void in
+//                var art = currentArt as ZXYData
+//                ZXY_DataProvider().saveArt(art.nickName, artID: currentArt.userId, artImg: art.headImage)
+//            })
             
             var allUser : [ArtistList]? = ZXY_DataProvider().fetchAll()
             if(allUser != nil)
