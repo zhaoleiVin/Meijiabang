@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -426,11 +425,6 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zpf-Dn-oja">
                                                     <rect key="frame" x="20" y="7" width="130" height="130"/>
                                                     <color key="backgroundColor" red="1" green="0.3921568627" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="130" id="HLO-B2-Vdv"/>
-                                                        <constraint firstAttribute="width" secondItem="zpf-Dn-oja" secondAttribute="height" multiplier="1:1" id="XZ3-cS-iyv"/>
-                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="130" id="uRj-0k-SMs"/>
-                                                    </constraints>
                                                 </imageView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bUi-Au-j2a">
                                                     <rect key="frame" x="450" y="8" width="130" height="130"/>
@@ -645,10 +639,14 @@
                             <constraint firstItem="q7a-GI-FFn" firstAttribute="bottom" secondItem="EbN-6j-0Dt" secondAttribute="top" id="1PU-IV-grG"/>
                             <constraint firstItem="q7a-GI-FFn" firstAttribute="bottom" secondItem="hAe-Km-atx" secondAttribute="bottom" id="4AP-Bs-Ays"/>
                             <constraint firstItem="q7a-GI-FFn" firstAttribute="top" secondItem="hAe-Km-atx" secondAttribute="top" id="4dA-Rs-47o"/>
+                            <constraint firstAttribute="trailing" secondItem="hAe-Km-atx" secondAttribute="trailing" id="DsI-Vp-fDr"/>
                             <constraint firstItem="q7a-GI-FFn" firstAttribute="leading" secondItem="hAe-Km-atx" secondAttribute="leading" id="YMH-nX-Hx0"/>
+                            <constraint firstItem="hAe-Km-atx" firstAttribute="top" secondItem="Bra-QO-Ofl" secondAttribute="top" id="bIt-La-alK"/>
                             <constraint firstItem="q7a-GI-FFn" firstAttribute="trailing" secondItem="hAe-Km-atx" secondAttribute="trailing" id="f85-AM-hXV"/>
                             <constraint firstAttribute="trailing" secondItem="q7a-GI-FFn" secondAttribute="trailing" id="jhJ-V8-BgS"/>
+                            <constraint firstAttribute="bottom" secondItem="hAe-Km-atx" secondAttribute="bottom" id="nDJ-5D-AKX"/>
                             <constraint firstItem="q7a-GI-FFn" firstAttribute="leading" secondItem="Bra-QO-Ofl" secondAttribute="leading" id="sko-k3-nob"/>
+                            <constraint firstItem="hAe-Km-atx" firstAttribute="leading" secondItem="Bra-QO-Ofl" secondAttribute="leading" id="tkC-NX-xaw"/>
                         </constraints>
                     </view>
                     <connections>
