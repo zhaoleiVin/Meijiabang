@@ -175,12 +175,12 @@ extension ZXY_ImagePickerTableVC : UITableViewDelegate , UITableViewDataSource
 extension ZXY_ImagePickerTableVC :ZXY_ImagePickerCollectionVCDelegate
 {
     func selectFinish(allPickImgURL: [ALAsset]) {
-        if(self.delegate != nil)
-        {
-            self.delegate?.ZXY_ImagePicker(self, didFinishPicker: allPickImgURL)
-        }
         self.dismissViewControllerAnimated(true, completion: { () -> Void in
-            
+            if(self.delegate != nil)
+            {
+                self.delegate?.ZXY_ImagePicker(self, didFinishPicker: allPickImgURL)
+            }
+
         })
     }
 }

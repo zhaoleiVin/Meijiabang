@@ -110,22 +110,25 @@ extension MainViewController : UITabBarControllerDelegate , ZXY_PictureTakeDeleg
     }
     
     func ZXY_ImagePicker(imagePicker: ZXY_ImagePickerTableVC, didFinishPicker assetArr: [ALAsset]) {
-        var currentVC: UINavigationController = self.viewControllers![self.selectedIndex] as UINavigationController
-        var story = UIStoryboard(name: "ZXYTakePic", bundle: nil)
-        var vc    = story.instantiateViewControllerWithIdentifier("ZXY_AfterPickImgVCID") as ZXY_AfterPickImgVC
-        vc.setAssetArr(assetArr)
-        //currentVC.presentViewController(vc, animated: true) { () -> Void in
-        currentVC.pushViewController(vc, animated: true)
+//        var currentVC: UINavigationController = self.viewControllers![self.selectedIndex] as UINavigationController
+//        var story = UIStoryboard(name: "ZXYTakePic", bundle: nil)
+//        var vc    = story.instantiateViewControllerWithIdentifier("ZXY_AfterPickImgVCID") as ZXY_AfterPickImgVC
+//        vc.setAssetArr(assetArr)
+//        //currentVC.presentViewController(vc, animated: true) { () -> Void in
+//        currentVC.pushViewController(vc, animated: true)
         //}
+        self.showFilter(self.AlssetToUIImage(assetArr[0]))
     }
     
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         picker.dismissViewControllerAnimated(true, completion: { () -> Void in
-            var currentVC: UINavigationController = self.viewControllers![self.selectedIndex] as UINavigationController
-            var story = UIStoryboard(name: "ZXYTakePic", bundle: nil)
-            var vc    = story.instantiateViewControllerWithIdentifier("ZXY_AfterPickImgVCID") as ZXY_AfterPickImgVC
-            vc.setPhoto([image])
-            currentVC.pushViewController(vc, animated: true)
+//            var currentVC: UINavigationController = self.viewControllers![self.selectedIndex] as UINavigationController
+//            var story = UIStoryboard(name: "ZXYTakePic", bundle: nil)
+//            var vc    = story.instantiateViewControllerWithIdentifier("ZXY_AfterPickImgVCID") as ZXY_AfterPickImgVC
+//            vc.setPhoto([image])
+//            currentVC.pushViewController(vc, animated: true)
+            self.showFilter(image)
+            
         })
         
     }
@@ -134,5 +137,14 @@ extension MainViewController : UITabBarControllerDelegate , ZXY_PictureTakeDeleg
         picker.dismissViewControllerAnimated(true, completion: { () -> Void in
             
         })
+    }
+    
+    func showFilter(filterImage : UIImage)
+    {
+        var scaleImg =  UIImage(image: filterImage, scaledToFitToSize: CGSizeMake(400, 800))
+        var currentVC: UIViewController = self.viewControllers![self.selectedIndex] as UIViewController
+        var filterVC = ZXY_ImgFilterVC()
+        filterVC.originalImage = scaleImg
+        filterVC.presentZXYImageFilter(currentVC)
     }
 }

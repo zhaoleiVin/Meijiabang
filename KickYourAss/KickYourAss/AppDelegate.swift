@@ -25,7 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,BMKGeneralDelegate{
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         UIToolbar.appearance().tintColor = UIColor.themeRedColor()
-        
+        APService.registerForRemoteNotificationTypes(
+            UIUserNotificationType.Badge.rawValue |
+                UIUserNotificationType.Sound.rawValue |
+                UIUserNotificationType.Alert.rawValue
+            , categories: nil)
+        APService.setupWithOption(launchOptions)
         
         bmkAuthor = BMKMapManager()
         
@@ -99,8 +104,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,BMKGeneralDelegate{
         return true
     }
 
+//    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+//        
+//    }
+
+    
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         println("收到消息")
+        EaseMob.sharedInstance().application(application, didReceiveRemoteNotification: userInfo)
+        APService.handleRemoteNotification(userInfo)
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        println("didReceiveRemoteNotification fetchCompletionHandler \(userInfo)")
+        APService.handleRemoteNotification(userInfo)
+        completionHandler(UIBackgroundFetchResult.NewData)
         EaseMob.sharedInstance().application(application, didReceiveRemoteNotification: userInfo)
     }
     
@@ -137,6 +155,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,BMKGeneralDelegate{
 
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         EaseMob.sharedInstance().application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
+        APService.registerDeviceToken(deviceToken)
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {

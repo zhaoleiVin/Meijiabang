@@ -19,7 +19,7 @@ class ZXY_PictureTakeVC: UIViewController {
     weak var delegate : ZXY_PictureTakeDelegate!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
 

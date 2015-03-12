@@ -89,6 +89,12 @@
 		8B6C1F631A6FA205006FCF4C /* ZXYData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B6C1F5E1A6FA205006FCF4C /* ZXYData.m */; };
 		8B6C1F641A6FA205006FCF4C /* ZXYImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B6C1F601A6FA205006FCF4C /* ZXYImage.m */; };
 		8B6C1F651A6FA205006FCF4C /* ZXYSearchBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B6C1F621A6FA205006FCF4C /* ZXYSearchBaseModel.m */; };
+		8B7199371AAF11A300025CC8 /* ZXY_FilterImgType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7199311AAF11A300025CC8 /* ZXY_FilterImgType.swift */; };
+		8B7199381AAF11A300025CC8 /* ZXY_FilterPicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7199321AAF11A300025CC8 /* ZXY_FilterPicCell.swift */; };
+		8B7199391AAF11A300025CC8 /* ZXY_FilterPicOperationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7199331AAF11A300025CC8 /* ZXY_FilterPicOperationCell.swift */; };
+		8B71993A1AAF11A300025CC8 /* ZXY_GPUImageFilterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7199341AAF11A300025CC8 /* ZXY_GPUImageFilterHelper.swift */; };
+		8B71993B1AAF11A300025CC8 /* ZXY_ImgFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7199351AAF11A300025CC8 /* ZXY_ImgFilterVC.swift */; };
+		8B71993C1AAF11A300025CC8 /* ZXY_SystemReative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7199361AAF11A300025CC8 /* ZXY_SystemReative.swift */; };
 		8B77F1211A6E852C002F147E /* ZXY_SearchArtistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B77F1201A6E852C002F147E /* ZXY_SearchArtistCell.swift */; };
 		8B7B775A1A81D8670004DF84 /* ZXY_ImagePickerCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7B77591A81D8670004DF84 /* ZXY_ImagePickerCollectionVC.swift */; };
 		8B7B775C1A81DC240004DF84 /* ZXY_ImagePickCoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7B775B1A81DC230004DF84 /* ZXY_ImagePickCoCell.swift */; };
@@ -112,6 +118,9 @@
 		8B8021A41A89EAD900F4C890 /* orderInfoPList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B8021A31A89EAD900F4C890 /* orderInfoPList.plist */; };
 		8B8021A61A89FE4400F4C890 /* ZXY_DateChangeInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8021A51A89FE4400F4C890 /* ZXY_DateChangeInfoVC.swift */; };
 		8B82B8FF1A6F67080086A13B /* ZXY_ALLApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B82B8FE1A6F67080086A13B /* ZXY_ALLApi.swift */; };
+		8B846A971AAFE53E00F0B9B5 /* libPushSDK-1.8.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B846A961AAFE53E00F0B9B5 /* libPushSDK-1.8.2.a */; };
+		8B846A991AAFE68700F0B9B5 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B846A981AAFE68700F0B9B5 /* PushConfig.plist */; };
+		8B846A9C1AAFEA3F00F0B9B5 /* ZXY_MainCourseListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B846A9B1AAFEA3F00F0B9B5 /* ZXY_MainCourseListVC.swift */; };
 		8B85E1D21A906B5100FA0541 /* ProfilePropertyPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B85E1D11A906B5100FA0541 /* ProfilePropertyPlist.plist */; };
 		8B8C3EBB1A918F230087DBBD /* ZXY_MyMessageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8C3EBA1A918F220087DBBD /* ZXY_MyMessageVC.swift */; };
 		8B8C3EC01A91903A0087DBBD /* ChatListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8C3EBC1A91903A0087DBBD /* ChatListCell.m */; };
@@ -577,6 +586,12 @@
 		8B6C1F621A6FA205006FCF4C /* ZXYSearchBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXYSearchBaseModel.m; sourceTree = "<group>"; };
 		8B7183A21A8B8B980004AB15 /* macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = macros.h; sourceTree = "<group>"; };
 		8B7183A31A8B8DDB0004AB15 /* KickYourAss-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KickYourAss-Prefix.pch"; sourceTree = "<group>"; };
+		8B7199311AAF11A300025CC8 /* ZXY_FilterImgType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZXY_FilterImgType.swift; sourceTree = "<group>"; };
+		8B7199321AAF11A300025CC8 /* ZXY_FilterPicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZXY_FilterPicCell.swift; sourceTree = "<group>"; };
+		8B7199331AAF11A300025CC8 /* ZXY_FilterPicOperationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZXY_FilterPicOperationCell.swift; sourceTree = "<group>"; };
+		8B7199341AAF11A300025CC8 /* ZXY_GPUImageFilterHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZXY_GPUImageFilterHelper.swift; sourceTree = "<group>"; };
+		8B7199351AAF11A300025CC8 /* ZXY_ImgFilterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZXY_ImgFilterVC.swift; sourceTree = "<group>"; };
+		8B7199361AAF11A300025CC8 /* ZXY_SystemReative.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZXY_SystemReative.swift; sourceTree = "<group>"; };
 		8B77F1201A6E852C002F147E /* ZXY_SearchArtistCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZXY_SearchArtistCell.swift; sourceTree = "<group>"; };
 		8B7B77571A81D6520004DF84 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		8B7B77591A81D8670004DF84 /* ZXY_ImagePickerCollectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZXY_ImagePickerCollectionVC.swift; sourceTree = "<group>"; };
@@ -607,6 +622,10 @@
 		8B8021A31A89EAD900F4C890 /* orderInfoPList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = orderInfoPList.plist; sourceTree = "<group>"; };
 		8B8021A51A89FE4400F4C890 /* ZXY_DateChangeInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZXY_DateChangeInfoVC.swift; sourceTree = "<group>"; };
 		8B82B8FE1A6F67080086A13B /* ZXY_ALLApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZXY_ALLApi.swift; sourceTree = "<group>"; };
+		8B846A951AAFE53E00F0B9B5 /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
+		8B846A961AAFE53E00F0B9B5 /* libPushSDK-1.8.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPushSDK-1.8.2.a"; sourceTree = "<group>"; };
+		8B846A981AAFE68700F0B9B5 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
+		8B846A9B1AAFEA3F00F0B9B5 /* ZXY_MainCourseListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZXY_MainCourseListVC.swift; sourceTree = "<group>"; };
 		8B85E1D11A906B5100FA0541 /* ProfilePropertyPlist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProfilePropertyPlist.plist; sourceTree = "<group>"; };
 		8B8C3EBA1A918F220087DBBD /* ZXY_MyMessageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZXY_MyMessageVC.swift; sourceTree = "<group>"; };
 		8B8C3EBC1A91903A0087DBBD /* ChatListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListCell.m; sourceTree = "<group>"; };
@@ -1056,6 +1075,7 @@
 			files = (
 				8BE425DC1A80B09300221AED /* AssetsLibrary.framework in Frameworks */,
 				8BF0F9B61A6E2C57003F376A /* MapKit.framework in Frameworks */,
+				8B846A971AAFE53E00F0B9B5 /* libPushSDK-1.8.2.a in Frameworks */,
 				8F2C4812E7F028403DE29C5A /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1194,6 +1214,7 @@
 		28D52E621A6CD06200C17CF0 /* KickYourAss */ = {
 			isa = PBXGroup;
 			children = (
+				8B846A941AAFE53E00F0B9B5 /* ThirdParty */,
 				8BD218461A8B4D6C00DDF441 /* EaseFolder */,
 				8BEEA1921A79F4090068B520 /* ArtistDetailFile */,
 				8BA57A7D1A78AF5C00848515 /* MJRefresh */,
@@ -1225,6 +1246,7 @@
 		28D52E631A6CD06200C17CF0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8B846A981AAFE68700F0B9B5 /* PushConfig.plist */,
 				8B1FDAF91A9F0CE000EF0ECF /* LaunchScreen.xib */,
 				28D52E641A6CD06200C17CF0 /* Info.plist */,
 				8BF0F9B71A6E2CDF003F376A /* Bridging-Header.h */,
@@ -1435,12 +1457,42 @@
 			path = SearchVCModel;
 			sourceTree = "<group>";
 		};
+		8B7199301AAF11A300025CC8 /* ZXY_ImgFilter */ = {
+			isa = PBXGroup;
+			children = (
+				8B7199311AAF11A300025CC8 /* ZXY_FilterImgType.swift */,
+				8B7199321AAF11A300025CC8 /* ZXY_FilterPicCell.swift */,
+				8B7199331AAF11A300025CC8 /* ZXY_FilterPicOperationCell.swift */,
+				8B7199341AAF11A300025CC8 /* ZXY_GPUImageFilterHelper.swift */,
+				8B7199351AAF11A300025CC8 /* ZXY_ImgFilterVC.swift */,
+				8B7199361AAF11A300025CC8 /* ZXY_SystemReative.swift */,
+			);
+			path = ZXY_ImgFilter;
+			sourceTree = "<group>";
+		};
 		8B77F11F1A6E850D002F147E /* FolderOFSearchCell */ = {
 			isa = PBXGroup;
 			children = (
 				8B77F1201A6E852C002F147E /* ZXY_SearchArtistCell.swift */,
 			);
 			path = FolderOFSearchCell;
+			sourceTree = "<group>";
+		};
+		8B846A941AAFE53E00F0B9B5 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				8B846A951AAFE53E00F0B9B5 /* APService.h */,
+				8B846A961AAFE53E00F0B9B5 /* libPushSDK-1.8.2.a */,
+			);
+			path = ThirdParty;
+			sourceTree = "<group>";
+		};
+		8B846A9A1AAFEA1500F0B9B5 /* ZXY_CourseVCS */ = {
+			isa = PBXGroup;
+			children = (
+				8B846A9B1AAFEA3F00F0B9B5 /* ZXY_MainCourseListVC.swift */,
+			);
+			path = ZXY_CourseVCS;
 			sourceTree = "<group>";
 		};
 		8BA57A7D1A78AF5C00848515 /* MJRefresh */ = {
@@ -1489,6 +1541,7 @@
 		8BB235BD1A6DF57F003530AA /* ZXY_Start */ = {
 			isa = PBXGroup;
 			children = (
+				8B846A9A1AAFEA1500F0B9B5 /* ZXY_CourseVCS */,
 				8BE425D21A809E5500221AED /* ZXY_TakePictureVCS */,
 				8BA57A991A78BD3D00848515 /* ZXY_ArtistVCS */,
 				8B6C1F561A6F8C05006FCF4C /* ZXYOCFile */,
@@ -2290,6 +2343,7 @@
 		8BF0F9B81A6E2E83003F376A /* ZXY_ThirdPartyFile */ = {
 			isa = PBXGroup;
 			children = (
+				8B7199301AAF11A300025CC8 /* ZXY_ImgFilter */,
 				8BE425DD1A80B3C800221AED /* ZXY_ImagePicker */,
 				8BF0F9B91A6E2E83003F376A /* ZXY_AllColor.swift */,
 				8B82B8FE1A6F67080086A13B /* ZXY_ALLApi.swift */,
@@ -2592,6 +2646,7 @@
 				8BD21B221A8B4F0D00DDF441 /* chat_sender_bg.png in Resources */,
 				8BD21B1C1A8B4F0D00DDF441 /* chat_sender_audio_playing_002.png in Resources */,
 				8BD21B491A8B4F1F00DDF441 /* tabbar_chatsHL.png in Resources */,
+				8B846A991AAFE68700F0B9B5 /* PushConfig.plist in Resources */,
 				8BD21B131A8B4F0D00DDF441 /* chat_receiver_audio_playing003@2x.png in Resources */,
 				8BD21AD41A8B4F0D00DDF441 /* chatBar_textBg@2x.png in Resources */,
 				8BD21AD01A8B4F0D00DDF441 /* chatBar_more_face@2x.png in Resources */,
@@ -2710,6 +2765,7 @@
 				8BD2190D1A8B4DA200DDF441 /* EMSDWebImageManager.m in Sources */,
 				8B7F3DF11A8C3C1500594506 /* LCYOrderFromMeViewController.swift in Sources */,
 				8BD219351A8B4DAB00DDF441 /* THProgressView.m in Sources */,
+				8B7199381AAF11A300025CC8 /* ZXY_FilterPicCell.swift in Sources */,
 				8BD219061A8B4DA200DDF441 /* MWZoomingScrollView.m in Sources */,
 				8B77F1211A6E852C002F147E /* ZXY_SearchArtistCell.swift in Sources */,
 				28D52E891A6CD2CB00C17CF0 /* MainViewController.swift in Sources */,
@@ -2724,6 +2780,7 @@
 				8B53F01B1A91C13300FE4FF2 /* ArtistList.m in Sources */,
 				28D52E691A6CD06200C17CF0 /* KickYourAss.xcdatamodeld in Sources */,
 				8BD2191F1A8B4DA200DDF441 /* PSTCollectionViewLayout.m in Sources */,
+				8B846A9C1AAFEA3F00F0B9B5 /* ZXY_MainCourseListVC.swift in Sources */,
 				8BF0F9C31A6E2E83003F376A /* ZXY_UserInfoDetail.swift in Sources */,
 				8BD219021A8B4DA200DDF441 /* MWPhoto.m in Sources */,
 				8BD2196B1A8B4E1F00DDF441 /* EMChooseViewController.m in Sources */,
@@ -2749,6 +2806,7 @@
 				8B7B775C1A81DC240004DF84 /* ZXY_ImagePickCoCell.swift in Sources */,
 				8BC5CC741A71F11900C513DF /* ZXY_DAnnotationView.swift in Sources */,
 				8B7F3DEF1A8C3C1500594506 /* LCYOrderBaseViewController.swift in Sources */,
+				8B71993C1AAF11A300025CC8 /* ZXY_SystemReative.swift in Sources */,
 				286C4C6F1A8882E8009983D0 /* ICYProfileCell.swift in Sources */,
 				8BECFF221A8303AB009FFBE3 /* ZXY_PicTakeInputCell.swift in Sources */,
 				288B0C1A1A80D3FF00CA073A /* RegisterArtistDetailViewController.swift in Sources */,
@@ -2778,6 +2836,7 @@
 				8BD2188D1A8B4D7700DDF441 /* LocationViewController.m in Sources */,
 				28B9CCB01A89FC6300421D66 /* LCYCareNormalViewController.swift in Sources */,
 				8BD218981A8B4D7700DDF441 /* EMChatVideoBubbleView.m in Sources */,
+				8B7199391AAF11A300025CC8 /* ZXY_FilterPicOperationCell.swift in Sources */,
 				8B7F3DF31A8C3C1500594506 /* LCYOrderViewController.swift in Sources */,
 				8BD219501A8B4DE300DDF441 /* UIViewController+HUD.m in Sources */,
 				8B46C43C1A7729A70093B5DA /* ZXY_HomeMostFashionVC.swift in Sources */,
@@ -2785,6 +2844,7 @@
 				8B53F0291A91E46B00FE4FF2 /* ZXY_VCForWelcome.swift in Sources */,
 				8B46C4591A7791500093B5DA /* ZXY_AlbumHotImage.m in Sources */,
 				8BA57A7C1A78766100848515 /* ZXYAlbumSqureRecommendAlbum.m in Sources */,
+				8B71993A1AAF11A300025CC8 /* ZXY_GPUImageFilterHelper.swift in Sources */,
 				8BD2190C1A8B4DA200DDF441 /* EMSDWebImageDownloaderOperation.m in Sources */,
 				8BD2196A1A8B4E1F00DDF441 /* BaseViewController.m in Sources */,
 				8B46C4571A7791500093B5DA /* ZXY_AlbumHotAlbumHot.m in Sources */,
@@ -2846,6 +2906,7 @@
 				8B46C4491A77324C0093B5DA /* ZXY_HomeMostFashionCell.swift in Sources */,
 				8BF0F9BF1A6E2E83003F376A /* ZXY_AllColor.swift in Sources */,
 				8B6BD0241A70A88B005A2FF1 /* ZXY_ConstValue.swift in Sources */,
+				8B71993B1AAF11A300025CC8 /* ZXY_ImgFilterVC.swift in Sources */,
 				8B6BD0291A70C2FE005A2FF1 /* ZXY_MMOCFile.mm in Sources */,
 				8BD218911A8B4D7700DDF441 /* DXChatBarMoreView.m in Sources */,
 				28B9CCBC1A8A03FA00421D66 /* LCYCareNormalCell.swift in Sources */,
@@ -2874,6 +2935,7 @@
 				8BD2189E1A8B4D7700DDF441 /* MessageReadManager.m in Sources */,
 				8BD2190F1A8B4DA200DDF441 /* MKAnnotationView+EMWebCache.m in Sources */,
 				8B6AC4661A76467D005CEE8D /* ZXY_LocationRelative.swift in Sources */,
+				8B7199371AAF11A300025CC8 /* ZXY_FilterImgType.swift in Sources */,
 				286C4C711A8884B9009983D0 /* ICYProfileAvatarCell.swift in Sources */,
 				8BA49BB41A7F419A0047EB85 /* ZXY_PictureImageCell.swift in Sources */,
 				28B9CCBE1A8A0E1A00421D66 /* LCYGeoManager.swift in Sources */,
@@ -2977,7 +3039,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
-				PROVISIONING_PROFILE = "51be8800-2111-4d35-be5f-50770c3b6464";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -3015,7 +3077,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
-				PROVISIONING_PROFILE = "51be8800-2111-4d35-be5f-50770c3b6464";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3035,7 +3097,10 @@
 				INFOPLIST_FILE = KickYourAss/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/KickYourAss/ThirdParty",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "KickYourAss/Bridging-Header.h";
@@ -3057,7 +3122,10 @@
 				INFOPLIST_FILE = KickYourAss/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/KickYourAss/ThirdParty",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "KickYourAss/Bridging-Header.h";

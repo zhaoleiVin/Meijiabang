@@ -10,6 +10,7 @@ import UIKit
 
 class ZXY_HomeContainer: UIViewController {
 
+    @IBOutlet weak var courseBtn: UIButton!
     @IBOutlet weak var naviRightBtn: UIButton!
     @IBOutlet weak var naviLeftBtn: UIButton!
     @IBOutlet weak var naviPageC: UIPageControl!
@@ -66,7 +67,7 @@ class ZXY_HomeContainer: UIViewController {
     
     func startInitScrollView()
     {
-        currentScroll.contentSize = CGSizeMake(self.view.frame.size.width * 2, self.view.frame.size.height)
+        currentScroll.contentSize = CGSizeMake(self.view.frame.size.width * 3, self.view.frame.size.height)
     }
     
     func startInitTitleNaviView()
@@ -93,9 +94,13 @@ extension ZXY_HomeContainer : UIScrollViewDelegate
         {
             self.scrollToChangePage(0)
         }
-        else
+        else if(scrollView.contentOffset.x == self.view.frame.size.width)
         {
             self.scrollToChangePage(1)
+        }
+        else
+        {
+            self.scrollToChangePage(2)
         }
     }
 }
@@ -109,12 +114,21 @@ extension ZXY_HomeContainer
             naviPageC.currentPage = 0
             naviLeftBtn.selected = true
             naviRightBtn.selected = false
+            courseBtn.selected    = false
         }
-        else
+        else if(currentPage == 1)
         {
             naviPageC.currentPage = 1
             naviLeftBtn.selected = false
             naviRightBtn.selected = true
+            courseBtn.selected    = false
+        }
+        else
+        {
+            naviPageC.currentPage = 2
+            naviLeftBtn.selected = false
+            naviRightBtn.selected = false
+            courseBtn.selected    = true
         }
     }
     @IBAction func rightBtnAction(sender: AnyObject) {
@@ -127,4 +141,8 @@ extension ZXY_HomeContainer
         self.currentScroll.setContentOffset(CGPointMake(self.view.frame.size.width, 0), animated: true)
     }
     
+    @IBAction func courseAction(sender: AnyObject) {
+        self.scrollToChangePage(2)
+        self.currentScroll.setContentOffset(CGPointMake(self.view.frame.size.width * 2, 0), animated: true)
+    }
 }
