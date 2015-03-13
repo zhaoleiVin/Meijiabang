@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,BMKGeneralDelegate{
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         UIToolbar.appearance().tintColor = UIColor.themeRedColor()
         APService.registerForRemoteNotificationTypes(
-            UIUserNotificationType.Badge.rawValue |
+            //UIUserNotificationType.Badge.rawValue |
                 UIUserNotificationType.Sound.rawValue |
                 UIUserNotificationType.Alert.rawValue
             , categories: nil)
@@ -61,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,BMKGeneralDelegate{
         }
         else
         {
-            var notiType = UIRemoteNotificationType.Badge | UIRemoteNotificationType.Alert | UIRemoteNotificationType.Sound
+            var notiType = UIRemoteNotificationType.Alert | UIRemoteNotificationType.Sound
             application.registerForRemoteNotificationTypes(notiType)
         }
         
@@ -136,13 +136,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,BMKGeneralDelegate{
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-        application.applicationIconBadgeNumber = 0
+        //application.applicationIconBadgeNumber = 0
         EaseMob.sharedInstance().applicationWillEnterForeground(application)
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        application.applicationIconBadgeNumber = 0
+        //application.applicationIconBadgeNumber = 0
         EaseMob.sharedInstance().applicationDidBecomeActive(application)
     }
 

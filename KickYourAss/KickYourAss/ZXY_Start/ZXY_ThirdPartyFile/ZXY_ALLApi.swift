@@ -10,6 +10,17 @@ import Foundation
 /**
 *  周效宇的API接口
 */
+
+enum ZXY_MainCourseAPIType : Int
+{
+    case CourseCategoryList = 0
+    case CourseDetailList
+    case CourseDetail
+    case CourseUserStatus
+    case CourseStart
+    case CourseCollect
+    case CourseMyCollect
+}
 struct ZXY_ALLApi
 {
     /**
@@ -110,4 +121,36 @@ struct ZXY_ALLApi
     *  修改用户基本信息
     */
     static let ZXY_ChangeInfoAPI      = "User/modifyUserInfo"
+    
+    
+
+    /**
+    教程的Api
+    
+    :param: currentType 接口类型
+    
+    :returns: 接口
+    */
+    static func ZXY_MainCourseAPI(currentType : ZXY_MainCourseAPIType) -> String
+    {
+        switch currentType
+        {
+        case .CourseCategoryList:
+            return "Course/index"
+        case .CourseDetailList:
+            return "Course/getListByCategory"
+        case .CourseDetail:
+            return "Course/getCourse"
+        case .CourseUserStatus:
+            return "Course/userStatus"
+        case .CourseStart:
+            return "Course/course_star"
+        case .CourseCollect:
+            return "Course/course_collect"
+        case .CourseMyCollect:
+            return "Course/my_collect_course"
+        default :
+            return "Course/index"
+        }
+    }
 }

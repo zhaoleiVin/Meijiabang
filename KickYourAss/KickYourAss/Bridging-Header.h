@@ -29,6 +29,13 @@
 #import "ArtistList.h"
 #import "GPUImage/GPUImage.h"
 #import "APService.h"
+#import "ZXYCourseBaseTitle.h"
+#import "ZXYCourseData.h"
+#import "ZXYCourseCourse.h"
+#import "ZXYCourseDetailListData.h"
+#import "ZXYCourseDetailListBase.h"
+#import "ZXYCourseUserStatusData.h"
+#import "ZXYCourseUserStatusBase.h"
 // ⬇️ 超逸专区
 #import "UIImage+Resize.h"
 

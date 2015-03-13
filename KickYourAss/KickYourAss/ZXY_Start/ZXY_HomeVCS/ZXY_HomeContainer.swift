@@ -20,6 +20,7 @@ class ZXY_HomeContainer: UIViewController {
     
     private   var mostFashion : ZXY_HomeMostFashionVC?
     private   var squreHome   : ZXY_HomeSqureVC?
+    private   var courseVC    : ZXY_MainCourseListVC?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,17 +45,21 @@ class ZXY_HomeContainer: UIViewController {
             var story   = UIStoryboard(name: "Home", bundle: nil)
             mostFashion = story.instantiateViewControllerWithIdentifier("mostVCID") as? ZXY_HomeMostFashionVC
             squreHome   = story.instantiateViewControllerWithIdentifier("squreVCID") as? ZXY_HomeSqureVC
-            
+            courseVC    = story.instantiateViewControllerWithIdentifier("courseVCID") as? ZXY_MainCourseListVC
             
             
             self.addChildViewController(mostFashion!)
             self.addChildViewController(squreHome!)
+            self.addChildViewController(courseVC!)
             
             self.currentScroll.addSubview(mostFashion!.view)
             mostFashion!.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)
             
             self.currentScroll.addSubview(squreHome!.view)
             squreHome!.view.frame   = CGRectMake(self.view.frame.size.width , 0, self.view.frame.size.width, self.view.frame.size.height)
+            
+            self.currentScroll.addSubview(courseVC!.view)
+            courseVC!.view.frame   = CGRectMake(self.view.frame.size.width * 2, 0, self.view.frame.size.width, self.view.frame.size.height)
         }
         
     }

@@ -237,20 +237,6 @@ extension ZXY_NailSearchVC
                 var art = self?.allUserList?[i] as ZXYData
                 ZXY_DataProvider().saveArt(art.nickName, artID: art.userId, artImg: art.headImage)
             }
-            
-//            currentArts.map({ [weak self](currentArt) -> Void in
-//                var art = currentArt as ZXYData
-//                ZXY_DataProvider().saveArt(art.nickName, artID: currentArt.userId, artImg: art.headImage)
-//            })
-            
-            var allUser : [ArtistList]? = ZXY_DataProvider().fetchAll()
-            if(allUser != nil)
-            {
-                allUser?.map({ (cs) -> Void in
-                    println(cs.artistName)
-                })
-            }
-            
             self?.littleBoy.stopAnimating()
             self?.isDownLoad = false
             self?.reloadCurrentTable()
