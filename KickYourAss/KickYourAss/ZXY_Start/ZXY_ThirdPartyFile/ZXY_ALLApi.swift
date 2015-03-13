@@ -37,6 +37,7 @@ struct ZXY_ALLApi
     *  分享主要的URL 后跟 albumID值
     */
     static let ZXY_ShareMainAPI = "http://www.meijiab.cn/admin/index.php/Home/Home/index/album_id/"
+    static let ZXY_ShareMainCourseAPI = "http://www.meijiab.cn/admin/index.php/Home/Home/course/course_id/"
     /**
     *  搜索页面 ： 用户列表相关API
     */

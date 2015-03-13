@@ -121,7 +121,7 @@ class ZXY_ImgFilterVC: UIViewController {
             slideBar?.hidden = false
             slideBar?.maximumValue = 1.0
             slideBar?.minimumValue = -1.0
-            slideBar?.value = Float(0.5)
+            slideBar?.value = Float(-0.5)
         case ZXY_FilterImgType.FilterImgSaturation:
             slideBar?.hidden = false
             slideBar?.maximumValue = 2.0
@@ -241,6 +241,10 @@ extension ZXY_ImgFilterVC : ZXY_FilterPicOperationCellDelegate
         self.setSliderPresent()
         weak var tempImg = filterImage!
         currentFilterValue = 0.5
+        if(itemTag == ZXY_FilterImgType.FilterImgBrightness)
+        {
+            currentFilterValue = -0.5
+        }
         currentTableV.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.None)
     }
 }

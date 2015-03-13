@@ -98,7 +98,7 @@ class ZXY_FilterPicOperationCell: UITableViewCell {
                             case 1:
                                 commonImg.image = ZXY_GPUImageFilterHelper.sharedInstance.filterImageWithFilterType(ZXY_FilterImgType.FilterImgContrast, originImage: filterImg!, valueO: 0.5)
                             case 2:
-                                commonImg.image = ZXY_GPUImageFilterHelper.sharedInstance.filterImageWithFilterType(ZXY_FilterImgType.FilterImgBrightness, originImage: filterImg!, valueO: 0.5)
+                                commonImg.image = ZXY_GPUImageFilterHelper.sharedInstance.filterImageWithFilterType(ZXY_FilterImgType.FilterImgBrightness, originImage: filterImg!, valueO: -0.5)
                             case 3:
                                 commonImg.image = ZXY_GPUImageFilterHelper.sharedInstance.filterImageWithFilterType(ZXY_FilterImgType.FilterImgSaturation, originImage: filterImg!, valueO: 0.5)
                             case 4:

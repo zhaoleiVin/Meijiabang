@@ -23,7 +23,7 @@ class ZXY_CourseDetailVC: UIViewController {
     private var dataForBtns : ZXYCourseUserStatusBase?
     
     private var stringURL : String!
-    
+    private var shareURL  : String!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.startLoadData()
@@ -31,6 +31,7 @@ class ZXY_CourseDetailVC: UIViewController {
         var timeStamp = ZXY_NetHelperOperate().timeStamp()
         var token     = ZXY_NetHelperOperate().timeStampMD5("meijia\(timeStamp)")
         stringURL = ZXY_ALLApi.ZXY_MainAPI + ZXY_ALLApi.ZXY_MainCourseAPI(ZXY_MainCourseAPIType.CourseDetail) + "?course_id=\(dataID)&timestamp=\(timeStamp)&token=\(token)"
+        shareURL  = ZXY_ALLApi.ZXY_ShareMainCourseAPI + dataID
         var request = NSURLRequest(URL: NSURL(string: stringURL)!, cachePolicy: NSURLRequestCachePolicy.ReloadRevalidatingCacheData, timeoutInterval: 30)
         self.currentWebV.loadRequest(request)
         
@@ -204,8 +205,8 @@ class ZXY_CourseDetailVC: UIViewController {
     }
     
     @IBAction func fenXiangAction(sender: AnyObject) {
-        UMSocialWechatHandler.setWXAppId(ZXY_ConstValue.WXAPPKEY.rawValue, appSecret: ZXY_ConstValue.WXAPPSECURITY.rawValue, url: stringURL)
-        UMSocialQQHandler.setQQWithAppId(ZXY_ConstValue.QQAPPID.rawValue, appKey: ZXY_ConstValue.QQAPPKEY.rawValue, url: stringURL)
+        UMSocialWechatHandler.setWXAppId(ZXY_ConstValue.WXAPPKEY.rawValue, appSecret: ZXY_ConstValue.WXAPPSECURITY.rawValue, url: shareURL)
+        UMSocialQQHandler.setQQWithAppId(ZXY_ConstValue.QQAPPID.rawValue, appKey: ZXY_ConstValue.QQAPPKEY.rawValue, url: shareURL)
         UMSocialSnsService.presentSnsIconSheetView(self, appKey: ZXY_ConstValue.UMAPPKEY.rawValue, shareText: self.title, shareImage: UIImage(named: "icon4_58"), shareToSnsNames: [UMShareToSina,UMShareToTencent,UMShareToQzone,UMShareToQQ,UMShareToWechatSession,UMShareToWechatTimeline], delegate: self)
     }
     
