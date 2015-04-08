@@ -10,7 +10,7 @@ import UIKit
 
 class LCYOrderFromMeViewController: LCYOrderBaseViewController {
     
-    private var dataInfo = [CYMJOrderListData]()
+    private var dataInfo : CYMJOrderListBase?
     
     override func reload() {
         let parameter = [
@@ -22,13 +22,14 @@ class LCYOrderFromMeViewController: LCYOrderBaseViewController {
             Api: LCYNetworking.LCYApi.OrderList,
             parameters: parameter,
             success: { [weak self](object) -> Void in
-                let retrieved = CYMJOrderListBase.modelObjectWithDictionary(object)
-                if retrieved.result == 1000 {
-                    self?.dataInfo.removeAll(keepCapacity: false)
-                    self?.dataInfo.extend(retrieved.data as [CYMJOrderListData])
+                self?.dataInfo = CYMJOrderListBase.modelObjectWithDictionary(object)
+                var resultCode = self?.dataInfo?.result
+                if resultCode == 1000 {
+                    
+                    
                     self?.tableView.reloadData()
                 } else {
-                    self?.alertWithErrorCode(retrieved.result)
+                    self?.alertWithErrorCode(resultCode!)
                 }
                 return
             },
@@ -42,11 +43,15 @@ class LCYOrderFromMeViewController: LCYOrderBaseViewController {
         return 1
     }
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataInfo.count
+        if let tempData = dataInfo
+        {
+            return tempData.data.count
+        }
+        return 0
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(LCYOrderFromMeCell.identifier) as LCYOrderFromMeCell
-        let data = dataInfo[indexPath.row]
+        let data = dataInfo?.data[indexPath.row] as CYMJOrderListData
         cell.apTimeLabel.text = data.addTime.stringFromTimeStamp(format: "yyyy-MM-dd HH:mm:ss")
         cell.cusNameLabel.text = data.nickName
         cell.apLocationLabel.text = data.detailAddr

@@ -12,7 +12,7 @@ class ZXY_DateVC: UIViewController {
 
     @IBOutlet weak var currentTable: UITableView!
     @IBOutlet weak var bottomTab: UITabBar!
-    private var titleList : [Dictionary<String , AnyObject>]!
+    private var titleList : [Dictionary<String , AnyObject>]! = []
     private var dataUserID : String!
     private var nameText : String?
     private var sexFlag  : Int?
@@ -30,7 +30,11 @@ class ZXY_DateVC: UIViewController {
         self.startInitTabBar()
         self.title = "预约订单"
         var array  = NSArray(contentsOfFile: NSBundle.mainBundle().pathForResource("orderInfoPList", ofType: "plist")!)
-        titleList  = array as [Dictionary<String , AnyObject>]
+        for var i = 0; i < array!.count ;i++
+        {
+            var current : Dictionary<String , AnyObject> = array![i] as Dictionary<String , AnyObject>
+            titleList.append(current)
+        }
         currentTable.tableFooterView = UIView(frame:CGRectZero)
         nameText = LCYCommon.sharedInstance.userInfo?.nickName
         titleList.map({[weak self] (temp : Dictionary<String , AnyObject>) -> Void in

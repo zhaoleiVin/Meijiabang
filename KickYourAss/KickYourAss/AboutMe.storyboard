@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gGj-Dw-4pJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gGj-Dw-4pJ">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -237,7 +237,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LCYOrderFromMeCellIdentifier" id="KzJ-Z4-FR6" customClass="LCYOrderFromMeCell" customModule="KickYourAss" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ZXYOrderToMeCellIdentifier" id="KzJ-Z4-FR6" customClass="ZXYOrderToMeCell" customModule="KickYourAss" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KzJ-Z4-FR6" id="0fh-3L-ibM">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -308,11 +308,11 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="apLocationLabel" destination="DDb-xb-52x" id="ba5-1j-hfI"/>
-                                    <outlet property="apTimeLabel" destination="p8M-A4-nNC" id="w95-2Q-TSi"/>
-                                    <outlet property="cusNameLabel" destination="4HT-zh-L4A" id="xco-wJ-pHm"/>
-                                    <outlet property="statusLabel" destination="f0x-2Q-5u5" id="1w4-8Y-UF4"/>
-                                    <outlet property="statusNewImage" destination="j4P-YG-YGQ" id="pAy-4r-yba"/>
+                                    <outlet property="apLocationLabel" destination="DDb-xb-52x" id="7FH-f3-AoM"/>
+                                    <outlet property="apTimeLabel" destination="p8M-A4-nNC" id="d8N-0U-NcJ"/>
+                                    <outlet property="cusNameLabel" destination="4HT-zh-L4A" id="Evf-uw-gOv"/>
+                                    <outlet property="statusLabel" destination="f0x-2Q-5u5" id="SiI-Ht-9KY"/>
+                                    <outlet property="statusNewImage" destination="j4P-YG-YGQ" id="jdr-ZT-V4b"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

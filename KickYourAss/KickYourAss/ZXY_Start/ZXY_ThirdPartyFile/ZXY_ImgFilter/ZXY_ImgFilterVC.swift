@@ -7,9 +7,13 @@
 //
 
 import UIKit
-
+protocol ZXY_ImgFilterVCDelegate : class
+{
+    func clickFinishBtn(filterImg : UIImage)
+}
 class ZXY_ImgFilterVC: UIViewController {
 
+    weak var delegate : ZXY_ImgFilterVCDelegate!
     private var slideBar : UISlider?
     var originalImage : UIImage?
     private var filterImage : UIImage?
@@ -25,7 +29,8 @@ class ZXY_ImgFilterVC: UIViewController {
         {
             self.thisNavi = UINavigationController(rootViewController: self)
         }
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "取消", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("dissMissZXYImageFilter"))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "取消", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("dissMissZXYImageFilter"))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "完成", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("finishFilterImg"))
         filterImage = originalImage?.copy() as? UIImage
         currentTableV = UITableView()
         currentTableV.delegate   = self
@@ -46,6 +51,11 @@ class ZXY_ImgFilterVC: UIViewController {
         {
             self.thisNavi = UINavigationController(rootViewController: self)
         }
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "取消", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("dissMissZXYImageFilter"))
+        if(thisNavi == nil)
+        {
+            self.thisNavi = UINavigationController(rootViewController: self)
+        }
         
         vc.presentViewController(self.thisNavi!, animated: true) {[weak self] () -> Void in
             
@@ -59,6 +69,20 @@ class ZXY_ImgFilterVC: UIViewController {
         })
     }
 
+    func finishFilterImg()
+    {
+        
+        if(filterImage != nil)
+        {
+            self.dismissViewControllerAnimated(true, completion: {[weak self] () -> Void in
+                if let hello = self?.filterImage
+                {
+                    self?.delegate.clickFinishBtn(hello)
+                }
+                
+            })
+        }
+    }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)

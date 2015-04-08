@@ -7,9 +7,14 @@
 //
 
 import UIKit
-
+protocol ZXY_NailPictureVCDelegate : class
+{
+    func deleteFunction(albumID : String?)
+}
 class ZXY_NailPictureVC: UIViewController {
 
+    weak var delegate : ZXY_NailPictureVCDelegate?
+    
     @IBOutlet weak var currentTabBar: UITabBar!
     
     @IBOutlet weak var firstItem: UITabBarItem!
@@ -25,6 +30,8 @@ class ZXY_NailPictureVC: UIViewController {
     private var dataForTable : ZXY_PictureDetailBase?
     private var currentUser : ZXY_ArtDetailInfoData?
     private var lagImgV : UIImageView?
+    
+    
     
     @IBOutlet weak var noDataView: UIView!
     
@@ -435,7 +442,9 @@ extension ZXY_NailPictureVC : UITableViewDelegate , UITableViewDataSource ,ZXY_P
                 var urlString = ZXY_ALLApi.ZXY_MainAPI + ZXY_ALLApi.ZXY_DeleteAlbumAPI
                 ZXY_NetHelperOperate().startGetDataPost(urlString, parameter: ["album_id" : albumID!], successBlock: {[weak self] (returnDic) -> Void in
                     MBProgressHUD.hideAllHUDsForView(self?.view, animated: true)
+                    self?.delegate?.deleteFunction(self?.albumID)
                     self?.navigationController!.popViewControllerAnimated(true)
+                    
                     return
                 }, failBlock: {[weak self] (error) -> Void in
                     println(error)

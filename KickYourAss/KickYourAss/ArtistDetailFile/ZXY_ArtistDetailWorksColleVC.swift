@@ -100,7 +100,7 @@ class ZXY_ArtistDetailWorksColleVC: UIViewController {
 
 }
 
-extension ZXY_ArtistDetailWorksColleVC : UICollectionViewDelegate , UICollectionViewDataSource , WaterfallLayoutDelegate , UIScrollViewDelegate
+extension ZXY_ArtistDetailWorksColleVC : UICollectionViewDelegate , UICollectionViewDataSource , WaterfallLayoutDelegate , UIScrollViewDelegate , ZXY_NailPictureVCDelegate
 {
     func reloadCurrentCollection()
     {
@@ -185,12 +185,14 @@ extension ZXY_ArtistDetailWorksColleVC : UICollectionViewDelegate , UICollection
         var currentData : ZXY_UserAlbumListData = dataForShow[indexPath.row] as ZXY_UserAlbumListData
         if(self.delegate != nil)
         {
-            self.delegate?.clickItem(currentData.albumId)
+            self.delegate?.clickItem(currentData.albumId )
         }
         else
         {
             var story = UIStoryboard(name: "ArtistDetailStoryBoard", bundle: nil)
             var vc    = story.instantiateViewControllerWithIdentifier("nailPictureID") as ZXY_NailPictureVC
+            vc.delegate = self
+            
             vc.setAlbumID(currentData.albumId, user_id: "")
             self.navigationController?.pushViewController(vc, animated: true)
         }
@@ -200,6 +202,22 @@ extension ZXY_ArtistDetailWorksColleVC : UICollectionViewDelegate , UICollection
         if(self.delegate != nil)
         {
             self.delegate!.collectionViewDidScroll(currentCollection)
+        }
+    }
+    
+    func deleteFunction(albumID: String?) {
+        if(albumID == nil)
+        {
+            return
+        }
+        for var i = 0 ; i < dataForShow.count ; i++
+        {
+            var currentData : ZXY_UserAlbumListData = dataForShow[i] as ZXY_UserAlbumListData
+            if(currentData.albumId == albumID!)
+            {
+                dataForShow.removeObject(currentData)
+                currentCollection.reloadData()
+            }
         }
     }
 

@@ -238,7 +238,7 @@ extension ZXY_AfterPickImgVC : UICollectionViewDelegate, UICollectionViewDataSou
     }
 }
 
-extension ZXY_AfterPickImgVC : ZXY_PickImgPictureVCDelegate , ZXY_ImagePickerDelegate , ZXY_PictureTakeDelegate , UIImagePickerControllerDelegate , UINavigationControllerDelegate
+extension ZXY_AfterPickImgVC : ZXY_PickImgPictureVCDelegate , ZXY_ImagePickerDelegate , ZXY_PictureTakeDelegate , UIImagePickerControllerDelegate , UINavigationControllerDelegate , ZXY_ImgFilterVCDelegate
 {
     func deletePhoto() {
         photoImg?.removeAll(keepCapacity: false)
@@ -266,21 +266,26 @@ extension ZXY_AfterPickImgVC : ZXY_PickImgPictureVCDelegate , ZXY_ImagePickerDel
     
     func ZXY_ImagePicker(imagePicker: ZXY_ImagePickerTableVC, didFinishPicker assetArr: [ALAsset]) {
         
-       for (index , value) in enumerate(assetArr)
-       {
-            var tempImg = self.AlssetToUIImage(value)
-            photoImg?.append(tempImg)
-
-       }
-        
-        self.currentCollectionV.reloadData()
+//       for (index , value) in enumerate(assetArr)
+//       {
+//            var tempImg = self.AlssetToUIImage(value)
+//            photoImg?.append(tempImg)
+//
+//       }
+        if(assetArr.count > 0)
+        {
+            var tempImg = self.AlssetToUIImage(assetArr[0])
+            self.showFilter(tempImg)
+        }
+        //self.currentCollectionV.reloadData()
         
     }
     
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         picker.dismissViewControllerAnimated(true, completion: {[weak self] () -> Void in
-            self?.photoImg?.append(image)
-            self?.currentCollectionV.reloadData()
+            self?.showFilter(image)
+            ""
+            //self?.currentCollectionV.reloadData()
             
         })
         
@@ -290,6 +295,21 @@ extension ZXY_AfterPickImgVC : ZXY_PickImgPictureVCDelegate , ZXY_ImagePickerDel
         picker.dismissViewControllerAnimated(true, completion: { () -> Void in
             
         })
+    }
+
+    func showFilter(filterImage : UIImage)
+    {
+        var scaleImg =  UIImage(image: filterImage, scaledToFitToSize: CGSizeMake(400, 800))
+        var filterVC = ZXY_ImgFilterVC()
+        filterVC.delegate = self
+        filterVC.originalImage = scaleImg
+        filterVC.presentZXYImageFilter(self)
+    }
+    
+    func clickFinishBtn(filterImg: UIImage) {
+        
+        self.photoImg?.append(filterImg)
+        self.currentCollectionV.reloadData()
     }
 
 

@@ -262,7 +262,7 @@ class ZXY_ArtistDetailVC: UIViewController {
 *  相关滑动的代理 以及 seg控件的事件
 */
 // MARK:相关滑动的代理 以及 seg控件的事件
-extension ZXY_ArtistDetailVC : UIScrollViewDelegate , ZXY_ArtistCommentTabVCDelegate , ZXY_ArtistDetailWorksColleVCDelegate
+extension ZXY_ArtistDetailVC : UIScrollViewDelegate , ZXY_ArtistCommentTabVCDelegate , ZXY_ArtistDetailWorksColleVCDelegate , ZXY_NailPictureVCDelegate
 {
     func scrollViewDidScroll(scrollView: UIScrollView) {
         var contentOffY : CGFloat = scrollView.contentOffset.y
@@ -283,9 +283,14 @@ extension ZXY_ArtistDetailVC : UIScrollViewDelegate , ZXY_ArtistCommentTabVCDele
 
     }
     
+    func deleteFunction(albumID: String?) {
+        artCollection?.deleteFunction(albumID)
+    }
+    
     func clickItem(albumID: String) {
         var story = UIStoryboard(name: "ArtistDetailStoryBoard", bundle: nil)
         var vc    = story.instantiateViewControllerWithIdentifier("nailPictureID") as ZXY_NailPictureVC
+        vc.delegate = self
         if(currentUser == nil)
         {
             vc.setAlbumID(albumID, user_id: "")
@@ -296,7 +301,6 @@ extension ZXY_ArtistDetailVC : UIScrollViewDelegate , ZXY_ArtistCommentTabVCDele
         }
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
     func collectionViewDidScroll(collection: UICollectionView) {
         self.scrollViewDidScroll(collection)
     }

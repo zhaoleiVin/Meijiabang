@@ -12,17 +12,29 @@
     
     private lazy var errorMap: [Int: String] = {
         let mapFile = NSBundle.mainBundle().pathForResource("ErrorMessage", ofType: "plist")!
-        let mapContent = NSDictionary(contentsOfFile: mapFile)! as [String: String]
+        let mapContent = NSDictionary(contentsOfFile: mapFile)! 
         var newMap = [Int: String]()
-        for (key, value) in mapContent {
-            newMap[key.integerValue] = value
+//        for (key, value) in mapContent {
+//            newMap[key.integerValue] = value
+//        }
+        for temp in mapContent.allKeys {
+            var currentKey = temp as NSString
+            var value = mapContent[currentKey] as String
+            newMap[currentKey.integerValue] = value
         }
         return newMap
         }()
     
     private lazy var orderStatusMap: [String: String] = {
         let mapFile = NSBundle.mainBundle().pathForResource("OrderStatus", ofType: "plist")!
-        return NSDictionary(contentsOfFile: mapFile) as [String: String]
+        var fileDic  = NSDictionary(contentsOfFile: mapFile)
+        var newMap : Dictionary<String , String> = Dictionary<String , String>()
+        for temp in fileDic!.allKeys {
+            var currentKey = temp as String
+            var value = fileDic![currentKey] as String
+            newMap[currentKey] = value
+        }
+        return newMap
         }()
     
     enum UserDefaultKeys: String {

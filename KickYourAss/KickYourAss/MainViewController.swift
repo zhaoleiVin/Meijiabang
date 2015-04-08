@@ -73,7 +73,7 @@ class MainViewController: UITabBarController {
 
 }
 
-extension MainViewController : UITabBarControllerDelegate , ZXY_PictureTakeDelegate , ZXY_ImagePickerDelegate , UINavigationControllerDelegate,UIImagePickerControllerDelegate
+extension MainViewController : UITabBarControllerDelegate , ZXY_PictureTakeDelegate , ZXY_ImagePickerDelegate , UINavigationControllerDelegate,UIImagePickerControllerDelegate , ZXY_ImgFilterVCDelegate
 {
     func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
         if(viewController == (tabBarController.viewControllers![3] as UIViewController))
@@ -144,7 +144,16 @@ extension MainViewController : UITabBarControllerDelegate , ZXY_PictureTakeDeleg
         var scaleImg =  UIImage(image: filterImage, scaledToFitToSize: CGSizeMake(400, 800))
         var currentVC: UIViewController = self.viewControllers![self.selectedIndex] as UIViewController
         var filterVC = ZXY_ImgFilterVC()
+        filterVC.delegate = self
         filterVC.originalImage = scaleImg
         filterVC.presentZXYImageFilter(currentVC)
+    }
+    
+    func clickFinishBtn(filterImg: UIImage) {
+        var currentVC: UINavigationController = self.viewControllers![self.selectedIndex] as UINavigationController
+        var story = UIStoryboard(name: "ZXYTakePic", bundle: nil)
+        var vc    = story.instantiateViewControllerWithIdentifier("ZXY_AfterPickImgVCID") as ZXY_AfterPickImgVC
+        vc.setPhoto([filterImg])
+        currentVC.pushViewController(vc, animated: true)
     }
 }

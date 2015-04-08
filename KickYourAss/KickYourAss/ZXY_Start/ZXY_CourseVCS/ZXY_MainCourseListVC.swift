@@ -102,4 +102,5 @@ extension ZXY_MainCourseListVC : UITableViewDelegate , UITableViewDataSource
         detailList?.setInitData(currentCourse.cateId)
         self.navigationController?.pushViewController(detailList!, animated: true)
     }
+    
 }
