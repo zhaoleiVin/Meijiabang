@@ -260,7 +260,6 @@
 		8BD2196C1A8B4E1F00DDF441 /* EMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD219611A8B4E1F00DDF441 /* EMNavigationController.m */; };
 		8BD2196D1A8B4E1F00DDF441 /* EMSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD219631A8B4E1F00DDF441 /* EMSearchDisplayController.m */; };
 		8BD2196E1A8B4E1F00DDF441 /* XHMessageTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD219651A8B4E1F00DDF441 /* XHMessageTextView.m */; };
-		8BD219EF1A8B4E5B00DDF441 /* ChatDemo-UI.ipa in Resources */ = {isa = PBXBuildFile; fileRef = 8BD2196F1A8B4E5A00DDF441 /* ChatDemo-UI.ipa */; };
 		8BD21A911A8B4F0D00DDF441 /* chatFire_audioPlaying0.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD219F61A8B4F0D00DDF441 /* chatFire_audioPlaying0.png */; };
 		8BD21A921A8B4F0D00DDF441 /* chatFire_audioPlaying0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD219F71A8B4F0D00DDF441 /* chatFire_audioPlaying0@2x.png */; };
 		8BD21A931A8B4F0D00DDF441 /* chatFire_audioPlaying1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD219F81A8B4F0D00DDF441 /* chatFire_audioPlaying1.png */; };
@@ -2593,7 +2592,6 @@
 				8BD21A9B1A8B4F0D00DDF441 /* VoiceSearchFeedback002.png in Resources */,
 				8BD21AED1A8B4F0D00DDF441 /* chatBar_record.png in Resources */,
 				8BD21AF91A8B4F0D00DDF441 /* chatBar_colorMore_location@2x.png in Resources */,
-				8BD219EF1A8B4E5B00DDF441 /* ChatDemo-UI.ipa in Resources */,
 				8BD21B531A8B4F1F00DDF441 /* tabbarBackground.png in Resources */,
 				8BD21B061A8B4F0D00DDF441 /* chatBar_more_locationSelected@2x.png in Resources */,
 				8BD21B481A8B4F1F00DDF441 /* tabbar_chats@2x.png in Resources */,
@@ -3175,20 +3173,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: jian yang (8M3SR68TYJ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: jian yang (8M3SR68TYJ)";
 				FRAMEWORK_SEARCH_PATHS = "$(PODS_ROOT)/UmengSocial/umeng_ios_social_sdk_4.2.1_arm64_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI/";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KickYourAss/KickYourAss-Prefix.pch";
 				INFOPLIST_FILE = KickYourAss/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/KickYourAss/ThirdParty",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "17cba266-5e0b-4dc7-af19-63ba60052f88";
 				SWIFT_OBJC_BRIDGING_HEADER = "KickYourAss/Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -3200,20 +3198,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: jian yang (8M3SR68TYJ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: jian yang (8M3SR68TYJ)";
 				FRAMEWORK_SEARCH_PATHS = "$(PODS_ROOT)/UmengSocial/umeng_ios_social_sdk_4.2.1_arm64_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI/";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KickYourAss/KickYourAss-Prefix.pch";
 				INFOPLIST_FILE = KickYourAss/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/KickYourAss/ThirdParty",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "17cba266-5e0b-4dc7-af19-63ba60052f88";
 				SWIFT_OBJC_BRIDGING_HEADER = "KickYourAss/Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
